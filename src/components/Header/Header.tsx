@@ -9,7 +9,7 @@ export default function Header() {
       <View style={styles.navContainer}>
         <View>
           <Link href={'/'}>
-            <Image source={require('@/assets/images/logo/dado-livre-logo.png')} style={styles.image} />
+            <Image source={require('@/assets/images/logo/logo-vetorizada.png')} style={styles.image} />
           </Link>
         </View>
         <Link href={'/perfil'}>
@@ -22,17 +22,22 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   image: {
-    width: 60,
-    height: 60,
+    width: 55,
+    height: 50
   },
   navContainer: {
     backgroundColor: mainColor,
-    height: 100,
+    height: 110,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
     paddingTop: 20
+  },
+  text: {
+    fontSize: 28,
+    color: '#FFF',
+    fontWeight: 'bold'
   }
 })

@@ -1,8 +1,8 @@
-import TabIcon from "@/components/TabIcon";
+import TabIcon from "@/components/TabIcon/TabIcon";
 import { mainColor } from "@/constants/color";
 import { Tabs } from "expo-router";
 import { ArrowUpDown, CalendarDays, Home, Newspaper, Users } from 'lucide-react-native';
-import TabLabel from "../../components/TabLabel";
+import TabLabel from "../../components/TabLabel/TabLabel";
 
 export default function TabsLayout() {
   return (
