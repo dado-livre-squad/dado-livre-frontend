@@ -1,7 +1,7 @@
 import { CandidateCardType } from "@/models/canidate-card-type";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
-import HomeFooter from "../HomeFooter/HomeFooter";
+import NextElections from "../NextElectionContain/NextElections";
 
 export default function CandidateCardList() {
   const listaCandidatos: CandidateCardType[] = [
@@ -50,7 +50,7 @@ export default function CandidateCardList() {
           contentContainerStyle={styles.listaContainer}
           ListFooterComponent={
             <View>
-              <HomeFooter/>
+              <NextElections/>
             </View>
           }
           renderItem={({ item }) => (

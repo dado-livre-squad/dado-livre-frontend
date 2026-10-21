@@ -1,11 +1,9 @@
-import { Text } from "react-native";
+import CandidateCardList from "@/components/CandidateCardList/CandidateCardList";
 
 export default function CandidatosList() {
   return (
     <>
-      <Text>
-        Candidatos
-      </Text>
+      <CandidateCardList />
     </>
   )
 }

@@ -5,7 +5,7 @@ type NewsContainerProps = {
   children: React.ReactNode
 }
 
-export default function NewsContainer({ children }: NewsContainerProps) {
+export default function NextElectionContainer({ children }: NewsContainerProps) {
   return (
     <>
       <View style={styles.container}>
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     display: 'flex',
-    gap: 8
+    gap: 8,
   }
 })
