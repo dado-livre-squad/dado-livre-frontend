@@ -1,11 +1,10 @@
-import { Text, View } from "react-native";
+import CandidateCardList from "@/components/CandidateCardList/CandidateCardList";
 
 export default function Index() {
+
   return (
-    <View>
-      <Text>
-        Home
-      </Text>
-    </View>
+    <>
+      <CandidateCardList />
+    </>
   )
 }
