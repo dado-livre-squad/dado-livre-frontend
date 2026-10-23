@@ -1,7 +1,8 @@
 import { CandidateCardType } from "@/models/canidate-card-type";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
-import NextElections from "../NextElectionContain/NextElections";
+import Carroussel from "../Carroussel/Carroussel";
+import NextElections from "../NextElections/NextElections";
 
 export default function CandidateCardList() {
   const listaCandidatos: CandidateCardType[] = [
@@ -52,6 +53,9 @@ export default function CandidateCardList() {
             <View>
               <NextElections/>
             </View>
+          }
+          ListHeaderComponent={
+            <Carroussel/>
           }
           renderItem={({ item }) => (
             <View style={styles.cartaoWrapper}>
