@@ -4,19 +4,17 @@
     "slug": "DadoLivreFrontEnd",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo/logo-vetorizada.png",
     "scheme": "dadolivrefrontend",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
     },
     "android": {
-      "adaptiveIcon": {
+     "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
+        "foregroundImage": "./assets/images/logo/logo-vetorizada.png"
+},
       "predictiveBackGestureEnabled": false,
       "package": "com.marcos_220.DadoLivreFrontEnd"
     },
