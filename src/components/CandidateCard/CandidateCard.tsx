@@ -13,22 +13,22 @@ type CandidateCardProps = {
   number: string
 }
 
-export default function CandidateCard({image, party, candidateName, role, number}: CandidateCardProps) {
+export default function CandidateCard({ image, party, candidateName, role, number }: CandidateCardProps) {
   return (
     <>
       <View style={styles.container}>
         <CardContainer>
           <View style={styles.imageWrapper}>
             <Image source={image} style={styles.image} />
-            
+
             <View style={styles.partyBadge}>
-              <Star size={14} color={'white'}/>
+              <Star size={14} color={'white'} />
               <Text style={styles.partyText}>{party}</Text>
             </View>
           </View>
 
           <CardContentContainer>
-            <CardCandidateInfos role={role} name={candidateName} number={number}/>
+            <CardCandidateInfos role={role} name={candidateName} number={number} />
           </CardContentContainer>
         </CardContainer>
       </View>
@@ -50,25 +50,25 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 200,
-    borderTopLeftRadius: 8, 
+    borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
   partyBadge: {
     position: 'absolute',
-    top: 8, 
-    left: 8, 
-    backgroundColor: mainColor, 
+    top: 8,
+    left: 8,
+    backgroundColor: mainColor,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 20, 
+    borderRadius: 20,
   },
   partyText: {
     color: '#ffffff',
-    fontFamily: 'Nunito-Medium', 
+    fontFamily: 'Nunito-Medium',
     fontWeight: 'bold',
     fontSize: 12,
-    marginLeft: 6, 
+    marginLeft: 6,
   },
 })

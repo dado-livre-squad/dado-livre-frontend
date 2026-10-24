@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
   },
   innerNewsContainerSubText: {
     color: '#74a09d',
-    fontFamily: 'RobotoSlab-Bold'
+    fontFamily: 'RobotoSlab-Regular'
   }
 })

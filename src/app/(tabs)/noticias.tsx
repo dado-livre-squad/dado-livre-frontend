@@ -1,11 +1,11 @@
-import { Text } from "react-native";
+
+import NewsCardList from "@/components/NewsCardList/NewsCardList";
+import NewsCardListTitle from "@/components/NewsCardList/NewsCardListTitle";
 
 export default function Noticias() {
   return (
     <>
-      <Text>
-        Notícias
-      </Text>
+      <NewsCardList header={<NewsCardListTitle />}/>
     </>
   )
 }
