@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
   title: {
-    fontFamily: 'RobotoSlab-Bold',
+    fontFamily: 'RobotoSlab-SemiBold',
     color: mainColor,
     fontSize: 18
   },

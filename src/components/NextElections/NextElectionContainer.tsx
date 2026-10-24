@@ -18,9 +18,9 @@ export default function NextElectionContainer({ children }: NewsContainerProps) 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: mainColor,
-    height: 'auto',
-    borderRadius: 8,
-    paddingHorizontal: 10,
+    height: 70,
+    borderRadius: 10,
+    paddingHorizontal: 18,
     paddingTop: 10,
     paddingBottom: 10,
     display: 'flex',

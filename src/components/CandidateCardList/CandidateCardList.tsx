@@ -1,9 +1,13 @@
 import { CandidateCardType } from "@/models/canidate-card-type";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
-import NextElections from "../NextElectionContain/NextElections";
 
-export default function CandidateCardList() {
+interface CandidateCardListProps {
+  footer?: React.ReactElement | null;
+  header?: React.ReactElement | null; 
+}
+
+export default function CandidateCardList({footer, header}: CandidateCardListProps) {
   const listaCandidatos: CandidateCardType[] = [
     {
       id: '1',
@@ -48,11 +52,8 @@ export default function CandidateCardList() {
           numColumns={2}
           columnWrapperStyle={styles.linhaGrade}
           contentContainerStyle={styles.listaContainer}
-          ListFooterComponent={
-            <View>
-              <NextElections/>
-            </View>
-          }
+          ListHeaderComponent={header ? header : <></>}
+          ListFooterComponent={ footer ? footer : <></>}
           renderItem={({ item }) => (
             <View style={styles.cartaoWrapper}>
               <CandidateCard
@@ -69,7 +70,6 @@ export default function CandidateCardList() {
     </>
   )
 }
-
 
 const styles = StyleSheet.create({
   tela: {
