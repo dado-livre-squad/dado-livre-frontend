@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     display: 'flex',
+    marginTop: 20
   },
   title: {
     fontFamily: 'RobotoSlab-Bold',
