@@ -8,26 +8,34 @@ import {
   View,
 } from "react-native";
 
+
 const destaques = [
   {
-    categoria: "Política",
-    titulo: "Debates presidenciais têm datas confirmadas para outubro",
-    data: "01 Set 2026",
-    imagem: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
-  },
-  {
     categoria: "Eleições",
-    titulo: "Conheça as principais notícias do cenário eleitoral",
-    data: "05 Set 2026",
-    imagem: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c",
+    titulo: "Lula é reeleito após disputa acirrada com Flávio Bolsonaro",
+    data: "25 Out 2026",
+    imagem:
+  "https://www.camara.leg.br/midias/image/2026/10/int7543-768x512.jpg",
+    url: "https://www.camara.leg.br/noticias/1313705-lula-e-reeleito-presidente-com-quase-52-dos-votos-validos-no-2o-turno",
   },
   {
-    categoria: "Brasil",
-    titulo: "Acompanhe as novidades da política brasileira",
-    data: "10 Set 2026",
-    imagem: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9",
+    categoria: "Oposição",
+    titulo: "Flávio não reconhece vitória de Lula e diz que pedirá anulação das eleições",
+    data: "25 Out 2026",
+    imagem:
+  "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/10/Flavio-Bolsonaro-3.jpg?w=1200&h=900&crop=0&quality=90",
+    url: "https://noticias.uol.com.br/ultimas-noticias/agencia-estado/2026/10/25/vitoria-de-lula-frustra-direita-e-provoca-acusacoes-de-fraude-e-tentativa-de-golpe.amp.htm",
+  },
+  {
+    categoria: "Governo e economia",
+    titulo: "Real despenca frente ao dólar após reeleição de Lula",
+    data: "25 Out 2026",
+    imagem:
+      "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportDomesticNews/tagreuters.com2026binary_LYNXMPEM2T181-BASEIMAGE.jpg?w=1200&h=900&crop=0&quality=90",
+    url: "https://www.ft.com/content/5c283ba4-37cf-4b0e-81f3-6df04b29529b",
   },
 ];
+
 
 export default function Carroussel() {
   const [indice, setIndice] = useState(0);
@@ -61,9 +69,16 @@ export default function Carroussel() {
     return () => clearInterval(tempo);
   }, [indice]);
 
+  
   return (
     <View style={styles.container}>
-      <Animated.View style={{ opacity: fadeAnim }}>
+      <View style={styles.cabecalho}>
+        <Text style={styles.tituloSecao}>DESTAQUES DA SEMANA</Text>
+        <Text style={styles.verTodas}>Ver todas</Text>
+      </View>
+
+    <Animated.View style={{ opacity: fadeAnim }}>
+
         <ImageBackground
           source={{ uri: destaque.imagem }}
           style={styles.banner}
@@ -117,6 +132,23 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 12,
   },
+  
+  cabecalho: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  tituloSecao: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#092B3B",
+  },
+  verTodas: {
+    fontSize: 9,
+    color: "#7A91A3",
+  },
+
   banner: {
     height: 158,
     justifyContent: "flex-end",
@@ -199,3 +231,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
 });
+
