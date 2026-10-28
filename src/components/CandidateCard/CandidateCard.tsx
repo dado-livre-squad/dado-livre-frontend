@@ -20,9 +20,9 @@ export default function CandidateCard({ id, image, party, candidateName, role, n
     <>
       <Link href={{
         pathname: '/candidato/[id]',
-        params: {id: id}
+        params: { id: id }
       }}
-      style={{marginTop: 20}}
+        style={{ marginTop: 20 }}
       >
         <View style={styles.container}>
           <CardContainer>
