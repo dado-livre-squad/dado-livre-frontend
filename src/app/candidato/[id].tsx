@@ -1,19 +1,19 @@
 import CandidateDetailsImage from '@/components/CandidateDetails/CandidateDetailsImage';
 import { candidatesList } from '@/mocks/candidates';
-import { CandidateCardType } from '@/models/canidate-card-type';
+import { CandidateModel } from '@/models/canidate-card.model';
 import { useLocalSearchParams } from 'expo-router';
 import { StyleSheet, Text } from 'react-native';
 
 export default function Details() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const candidate: CandidateCardType | undefined = candidatesList.find(candidate => candidate.id === id)
+  const candidate: CandidateModel | undefined = candidatesList.find(candidate => candidate.id === id)
 
   return (
     <>
       {!candidate ?
         <Text>Candidato não encontrado</Text>
         :
-        <CandidateDetailsImage image={candidate.image}/>
+        <CandidateDetailsImage candidate={candidate}/>
       }
     </>
   )
