@@ -1,4 +1,5 @@
 import { mainColor } from "@/constants/color";
+import { Link } from "expo-router";
 import { Star } from "lucide-react-native";
 import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import CardCandidateInfos from "./CardCandidateInfos";
@@ -6,6 +7,7 @@ import CardContainer from "./CardContainer";
 import CardContentContainer from "./CardContentContainer";
 
 type CandidateCardProps = {
+  id: string;
   image: ImageSourcePropType,
   party: string,
   candidateName: string,
@@ -13,25 +15,32 @@ type CandidateCardProps = {
   number: string
 }
 
-export default function CandidateCard({ image, party, candidateName, role, number }: CandidateCardProps) {
+export default function CandidateCard({ id, image, party, candidateName, role, number }: CandidateCardProps) {
   return (
     <>
-      <View style={styles.container}>
-        <CardContainer>
-          <View style={styles.imageWrapper}>
-            <Image source={image} style={styles.image} />
+      <Link href={{
+        pathname: '/candidato/[id]',
+        params: { id: id }
+      }}
+        style={{ marginTop: 20 }}
+      >
+        <View style={styles.container}>
+          <CardContainer>
+            <View style={styles.imageWrapper}>
+              <Image source={image} style={styles.image} />
 
-            <View style={styles.partyBadge}>
-              <Star size={14} color={'white'} />
-              <Text style={styles.partyText}>{party}</Text>
+              <View style={styles.partyBadge}>
+                <Star size={14} color={'white'} />
+                <Text style={styles.partyText}>{party}</Text>
+              </View>
             </View>
-          </View>
 
-          <CardContentContainer>
-            <CardCandidateInfos role={role} name={candidateName} number={number} />
-          </CardContentContainer>
-        </CardContainer>
-      </View>
+            <CardContentContainer>
+              <CardCandidateInfos role={role} name={candidateName} number={number} />
+            </CardContentContainer>
+          </CardContainer>
+        </View>
+      </Link>
     </>
   )
 }

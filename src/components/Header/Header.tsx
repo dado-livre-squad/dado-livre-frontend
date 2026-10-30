@@ -1,9 +1,13 @@
 import { mainColor } from "@/constants/color";
-import { Link } from "expo-router";
+import { Link, usePathname } from "expo-router";
 import { User } from "lucide-react-native";
 import { Image, StyleSheet, View } from "react-native";
 
 export default function Header() {
+  const pathName = usePathname()
+
+  if (pathName === '/candidato') return null
+
   return (
     <>
       <View style={styles.navContainer}>

@@ -18,27 +18,27 @@ export default function TabsLayout() {
       >
         <Tabs.Screen name="index" options={{
           title: 'Início',
-          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={Home}/>,
+          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={Home} />,
           tabBarLabel: ({ color, focused }) => <TabLabel title='Início' color={color} focused={focused} />
         }} />
         <Tabs.Screen name="candidatos" options={{
           title: 'Candidatos',
-          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={Users}/>,
+          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={Users} />,
           tabBarLabel: ({ color, focused }) => <TabLabel title='Candidatos' color={color} focused={focused} />
         }} />
         <Tabs.Screen name="noticias" options={{
           title: 'Notícias',
-          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={Newspaper}/>,
+          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={Newspaper} />,
           tabBarLabel: ({ color, focused }) => <TabLabel title='Notícias' color={color} focused={focused} />
         }} />
         <Tabs.Screen name="eleicoes" options={{
           title: 'Eleições',
-          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={CalendarDays}/>,
+          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={CalendarDays} />,
           tabBarLabel: ({ color, focused }) => <TabLabel title='Eleições' color={color} focused={focused} />
         }} />
         <Tabs.Screen name="comparar" options={{
           title: 'Comparar',
-          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={ArrowUpDown}/>,
+          tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={ArrowUpDown} />,
           tabBarLabel: ({ color, focused }) => <TabLabel title='Comparar' color={color} focused={focused} />
         }} />
         <Tabs.Screen name="perfil" options={{
