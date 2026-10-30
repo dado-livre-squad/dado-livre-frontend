@@ -1,52 +1,16 @@
 
 import { Stack, useLocalSearchParams } from "expo-router";
 import {
-    Image,
-    Linking,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
+  Image,
+  Linking,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
 } from "react-native";
 
-const noticias = [
-  {
-    id: "1",
-    categoria: "Eleições",
-    titulo: "Lula é reeleito após disputa acirrada com Flávio Bolsonaro",
-    data: "25 Out 2026",
-    imagem:
-      "https://www.camara.leg.br/midias/image/2026/10/int7543-768x512.jpg",
-    resumo:
-      "A notícia apresenta o resultado da disputa presidencial e os principais acontecimentos relacionados à votação. Consulte a reportagem original para verificar os números oficiais e os detalhes da apuração.",
-    fonte: "Agência Câmara",
-    url: "https://www.camara.leg.br/noticias/1313705-lula-e-reeleito-presidente-com-quase-52-dos-votos-validos-no-2o-turno",
-  },
-  {
-    id: "2",
-    categoria: "Oposição",
-    titulo: "Vitória de Lula provoca reações e questionamentos da direita",
-    data: "25 Out 2026",
-    imagem:
-      "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/10/Flavio-Bolsonaro-3.jpg?w=1200&h=900&crop=0&quality=90",
-    resumo:
-      "A notícia aborda as reações de lideranças da direita ao resultado eleitoral e os questionamentos apresentados após a votação. Consulte a reportagem original para conferir as declarações e os acontecimentos relatados.",
-    fonte: "UOL / Agência Estado",
-    url: "https://noticias.uol.com.br/ultimas-noticias/agencia-estado/2026/10/25/vitoria-de-lula-frustra-direita-e-provoca-acusacoes-de-fraude-e-tentativa-de-golpe.amp.htm",
-  },
-  {
-    id: "3",
-    categoria: "Governo e economia",
-    titulo: "Real despenca frente ao dólar após reeleição de Lula",
-    data: "25 Out 2026",
-    imagem:
-      "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/10/Reuters_Direct_Media/BrazilOnlineReportDomesticNews/tagreuters.com2026binary_LYNXMPEM2T181-BASEIMAGE.jpg?w=1200&h=900&crop=0&quality=90",
-    resumo:
-      "A notícia aborda as movimentações do mercado financeiro e o comportamento do real frente ao dólar. Consulte a reportagem original para verificar os dados e os fatores apontados para a variação cambial.",
-    fonte: "Financial Times",
-    url: "https://www.ft.com/content/5c283ba4-37cf-4b0e-81f3-6df04b29529b",
-  },
-];
+import { noticias } from "@/data/noticias";
+
 
 export default function NoticiaDetalhe() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -78,7 +42,11 @@ export default function NoticiaDetalhe() {
 
       <ScrollView style={styles.container}>
         <Image
-          source={{ uri: noticia.imagem }}
+          source={
+            typeof noticia.imagem === "string"
+              ? { uri: noticia.imagem }
+              : noticia.imagem
+            }
           style={styles.imagem}
           resizeMode="cover"
         />

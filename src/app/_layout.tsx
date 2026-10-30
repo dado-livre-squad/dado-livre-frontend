@@ -32,10 +32,12 @@ export default function RootLayout() {
       <Header />
       <Stack
         screenOptions={{
-          animation: "fade_from_bottom",
-          headerShown: false
+          headerShown: false,
         }}
-      />
+      >
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="noticia/[id]" />
+      </Stack>
     </>
   )
 }

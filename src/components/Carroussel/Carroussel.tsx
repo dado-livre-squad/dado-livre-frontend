@@ -8,55 +8,42 @@ import {
   View,
 } from "react-native";
 
+import { router } from "expo-router";
 
-const destaques = [
-  {
-    categoria: "Eleições",
-    titulo: "Lula é reeleito após disputa acirrada com Flávio Bolsonaro",
-    data: "25 Out 2026",
-    imagem:
-  "https://www.camara.leg.br/midias/image/2026/10/int7543-768x512.jpg",
-    url: "https://www.camara.leg.br/noticias/1313705-lula-e-reeleito-presidente-com-quase-52-dos-votos-validos-no-2o-turno",
-  },
-  {
-    categoria: "Oposição",
-    titulo: "Flávio não reconhece vitória de Lula e diz que pedirá anulação das eleições",
-    data: "25 Out 2026",
-    imagem:
-  "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/10/Flavio-Bolsonaro-3.jpg?w=1200&h=900&crop=0&quality=90",
-    url: "https://noticias.uol.com.br/ultimas-noticias/agencia-estado/2026/10/25/vitoria-de-lula-frustra-direita-e-provoca-acusacoes-de-fraude-e-tentativa-de-golpe.amp.htm",
-  },
-  {
-    categoria: "Governo e economia",
-    titulo: "Real despenca frente ao dólar após reeleição de Lula",
-    data: "25 Out 2026",
-    imagem:
-      "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportDomesticNews/tagreuters.com2026binary_LYNXMPEM2T181-BASEIMAGE.jpg?w=1200&h=900&crop=0&quality=90",
-    url: "https://www.ft.com/content/5c283ba4-37cf-4b0e-81f3-6df04b29529b",
-  },
-];
+import { noticias } from "@/data/noticias";
+
+
+const destaques = noticias.filter((noticia) => noticia.destaque);
 
 
 export default function Carroussel() {
   const [indice, setIndice] = useState(0);
-  const fadeAnim = useRef(new Animated.Value(1)).current; // Valor inicial da opacidade
+  const fadeAnim = useRef(new Animated.Value(1)).current;
   const destaque = destaques[indice];
 
   function avancar() {
     setIndice((atual) => (atual + 1) % destaques.length);
   }
+    
+  function abrirNoticia() {
+  router.push({
+    pathname: "/noticia/[id]",
+    params: { id: destaque.id },
+  });
+}
 
-  function voltar() {
+
+  function voltar() { 
     setIndice(
       (atual) => (atual - 1 + destaques.length) % destaques.length
     );
   }
 
   useEffect(() => {
-    fadeAnim.setValue(0.3); 
+    fadeAnim.setValue(0.3);
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 450, 
+      duration: 450,
       useNativeDriver: true,
     }).start();
   }, [indice]);
@@ -69,28 +56,42 @@ export default function Carroussel() {
     return () => clearInterval(tempo);
   }, [indice]);
 
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.cabecalho}>
         <Text style={styles.tituloSecao}>DESTAQUES DA SEMANA</Text>
-        <Text style={styles.verTodas}>Ver todas</Text>
+        <TouchableOpacity onPress={() => router.push("/(tabs)/noticias")}>
+          <Text style={styles.verTodas}>Ver todas</Text>
+        </TouchableOpacity>
       </View>
 
-    <Animated.View style={{ opacity: fadeAnim }}>
+      <Animated.View style={{ opacity: fadeAnim }}>
 
         <ImageBackground
-          source={{ uri: destaque.imagem }}
+          source={
+            typeof destaque.imagem === "string"
+              ? { uri: destaque.imagem }
+              : destaque.imagem
+          }
           style={styles.banner}
           imageStyle={styles.imagem}
           resizeMode="cover"
         >
-          <View style={styles.sombra}>
-            <View style={styles.conteudo}>
+           <View style={styles.sombra}>
+             <TouchableOpacity
+              style={styles.conteudo}
+              activeOpacity={0.9}
+              onPress={() => {
+                console.log("CLIQUE NA NOTÍCIA");
+                abrirNoticia();
+              }}
+            >
               <Text style={styles.categoria}>{destaque.categoria}</Text>
               <Text style={styles.titulo}>{destaque.titulo}</Text>
               <Text style={styles.data}>{destaque.data}</Text>
-            </View>
+            </TouchableOpacity>
+          
 
             <TouchableOpacity
               style={[styles.seta, styles.esquerda]}
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 12,
   },
-  
+
   cabecalho: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -145,12 +146,18 @@ const styles = StyleSheet.create({
     color: "#092B3B",
   },
   verTodas: {
-    fontSize: 9,
-    color: "#7A91A3",
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#092B3B",
+    backgroundColor: "#DCE7EC",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    overflow: "hidden",
   },
 
   banner: {
-    height: 158,
+    height: 180,
     justifyContent: "flex-end",
     overflow: "hidden",
   },

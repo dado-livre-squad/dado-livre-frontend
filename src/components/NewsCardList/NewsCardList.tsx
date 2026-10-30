@@ -1,4 +1,5 @@
-import { NewsCardModel } from "@/models/news-card.model";
+import { noticias } from "@/data/noticias";
+import { router } from "expo-router";
 import { FlatList, StyleSheet, View } from "react-native";
 import NewsCard from "../NewsCard/NewsCard";
 
@@ -7,29 +8,7 @@ interface NewsardListProps {
   header?: React.ReactElement | null;
 }
 
-const newsList: NewsCardModel[] = [
-  {
-    id: '1',
-    theme: 'Legislação',
-    title: 'Congresso inicia debates sobre novas regras para campanhas digitais',
-    date: '30 ago de 2026 - 3 min de leitura',
-    imageUrl: require('@/assets/images/noticia-1.jpg')
-  },
-  {
-    id: '2',
-    theme: 'Serviço',
-    title: 'Eleitor já pode consultar seu local de votação pelo aplicativo',
-    date: '29 ago de 2026 - 3 min de leitura',
-    imageUrl: require('@/assets/images/noticia-2.jpg')
-  },
-  {
-    id: '3',
-    theme: 'Política',
-    title: 'Partidos divulgam agenda dos próximos encontros regionais',
-    date: '28 ago de 2026 - 3 min de leitura',
-    imageUrl: require('@/assets/images/noticia-3.jpg')
-  },
-]
+const newsList = noticias.filter((noticia) => !noticia.destaque);
 
 export default function NewsCardList({ header, footer }: NewsardListProps) {
   return (
@@ -41,14 +20,18 @@ export default function NewsCardList({ header, footer }: NewsardListProps) {
         ListHeaderComponent={header ? header : <></>}
         ListFooterComponent={footer ? footer : <></>}
         renderItem={({ item }) => (
-          <View style={styles.cartaoWrapper}>
-            <NewsCard
-              theme={item.theme}
-              title={item.title}
-              date={item.date}
-              imageUrl={item.imageUrl}
-            />
-          </View>
+          <NewsCard
+            theme={item.categoria}
+            title={item.titulo}
+            date={item.data}
+            imageUrl={item.imagem}
+            onPress={() => {
+              router.push({
+                pathname: "/noticia/[id]",
+                params: { id: item.id },
+              });
+            }}
+          />
         )}
       />
     </View>
