@@ -1,11 +1,11 @@
-import { CandidateModel } from "@/models/canidate-card.model";
+import { DetailedCandidateModel } from "@/models/detailed-candidate.model";
 import { LinearGradient } from "expo-linear-gradient"; // ou 'react-native-linear-gradient'
 import { Image, StyleSheet, View } from "react-native";
 import CandidateDetailsImageIcon from "./CandidateDetailsImageIcon";
 import CandidateDetailsInfos from "./Infos/CandidateDetailsInfos";
 
 type CandidateDetailsImageProps = {
-  candidate: CandidateModel
+  candidate: DetailedCandidateModel
 }
 
 export default function CandidateDetailsImage({ candidate }: CandidateDetailsImageProps) {

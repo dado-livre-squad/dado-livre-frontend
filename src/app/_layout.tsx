@@ -32,8 +32,8 @@ export default function RootLayout() {
       <Header/>
       <Stack
         screenOptions={{
-          animation: 'slide_from_bottom',
-          animationDuration: 100,
+          animation: 'fade_from_bottom',
+          animationDuration: 200,
           headerShown: false
         }}
       />
