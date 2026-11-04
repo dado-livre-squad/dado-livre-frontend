@@ -1,27 +1,30 @@
-import CandidateDetailsImage from '@/components/CandidateDetails/CandidateDetailsImage';
-import ErrorScreen from '@/components/ErrorScreen/ErrorScreen';
-import { candidatesList } from '@/mocks/candidates';
-import { CandidateModel } from '@/models/canidate-card.model';
+import CandidateDetails from '@/components/CandidateDetails/CandidateDetails';
+import { detailedCandidatesList } from '@/mocks/detailed-candidates';
+import { DetailedCandidateModel } from '@/models/detailed-candidate.model';
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function Details() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const candidate: CandidateModel | undefined = candidatesList.find(candidate => candidate.id === id)
+  const candidate: DetailedCandidateModel | undefined = detailedCandidatesList.find(candidate => 
+    candidate.id === id)
 
   return (
-    <>
+    <View style={styles.container}>
       {!candidate ?
         <ErrorScreen
           title='Oops!'
           subTitle='Candidato não encontrado'
         />
         :
-        <CandidateDetailsImage candidate={candidate} />
+        <CandidateDetails candidate={candidate}/>
       }
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
 })
