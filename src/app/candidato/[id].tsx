@@ -12,7 +12,10 @@ export default function Details() {
   return (
     <View style={styles.container}>
       {!candidate ?
-        <Text>Candidato não encontrado</Text>
+        <ErrorScreen
+          title='Oops!'
+          subTitle='Candidato não encontrado'
+        />
         :
         <CandidateDetails candidate={candidate}/>
       }

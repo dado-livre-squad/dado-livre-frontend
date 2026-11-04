@@ -9,12 +9,13 @@ export default function Noticias() {
     <>
       <NewsCardList header={
         <>
-          <View style={{paddingHorizontal: 14}}>
+          <View style={{ paddingHorizontal: 14 }}>
             <Carroussel />
           </View>
           <NewsCardListTitle />
         </>
-      } />
+      }
+      />
     </>
   )
 }
