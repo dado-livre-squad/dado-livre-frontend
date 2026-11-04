@@ -1,8 +1,10 @@
 import { DetailedCandidateModel } from "@/models/detailed-candidate.model";
-import { LinearGradient } from "expo-linear-gradient"; // ou 'react-native-linear-gradient'
-import { Image, StyleSheet, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
 import CandidateDetailsImageIcon from "./CandidateDetailsImageIcon";
 import CandidateDetailsInfos from "./Infos/CandidateDetailsInfos";
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 type CandidateDetailsImageProps = {
   candidate: DetailedCandidateModel
@@ -11,19 +13,21 @@ type CandidateDetailsImageProps = {
 export default function CandidateDetailsImage({ candidate }: CandidateDetailsImageProps) {
   return (
     <View style={styles.imageContainer}>
-      <Image source={candidate.image} style={styles.image} />
+      <Image source={candidate.image} style={styles.image} resizeMode="cover" />
       
       <LinearGradient
         colors={['rgba(0, 0, 0, 0.65)', 'transparent']}
         style={styles.topGradientOverlay}
+        pointerEvents="none"
       />
 
       <LinearGradient
         colors={['transparent', 'rgba(0, 0, 0, 0.85)']}
         style={styles.bottomGradientOverlay}
+        pointerEvents="none"
       />
 
-      <View style={styles.upperIcons}>
+      <View style={styles.upperIcons} pointerEvents="box-none">
         <CandidateDetailsImageIcon />
       </View>
 
@@ -35,7 +39,7 @@ export default function CandidateDetailsImage({ candidate }: CandidateDetailsIma
 
 const styles = StyleSheet.create({
   imageContainer: {
-    height: '35%',
+    height: SCREEN_HEIGHT * 0.35, 
     width: '100%',
     position: 'relative'
   },

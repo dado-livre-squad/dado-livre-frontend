@@ -1,4 +1,5 @@
 export type SocialMedia = {
   name: string,
-  link: string
+  link: string,
+  username: string
 }

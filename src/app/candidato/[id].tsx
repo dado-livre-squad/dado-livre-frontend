@@ -2,7 +2,7 @@ import CandidateDetails from '@/components/CandidateDetails/CandidateDetails';
 import { detailedCandidatesList } from '@/mocks/detailed-candidates';
 import { DetailedCandidateModel } from '@/models/detailed-candidate.model';
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function Details() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -10,15 +10,18 @@ export default function Details() {
     candidate.id === id)
 
   return (
-    <>
+    <View style={styles.container}>
       {!candidate ?
         <Text>Candidato não encontrado</Text>
         :
         <CandidateDetails candidate={candidate}/>
       }
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
 })
