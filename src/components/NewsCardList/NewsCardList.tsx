@@ -43,10 +43,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4f4f4',
     flex: 1,
   },
+
   listaContainer: {
-    gap: 20,
-    paddingVertical: 16,
-  },
+  gap: 20,
+  paddingVertical: 16,
+  paddingHorizontal: 12,
+},
   cartaoWrapper: {
     width: '100%',
   }

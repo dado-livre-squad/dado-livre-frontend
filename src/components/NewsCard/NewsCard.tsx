@@ -36,7 +36,7 @@ export default function NewsCard({theme, title, date, imageUrl, onPress,}: NewsC
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 160,
+    height: 180,
     backgroundColor: 'white',
     borderRadius: 15,
     gap: 8,

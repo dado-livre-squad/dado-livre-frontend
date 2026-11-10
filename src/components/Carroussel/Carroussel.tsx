@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   tituloSecao: {
-    fontSize: 14,
+    fontFamily: "RobotoSlab-Bold",
+    fontSize: 16,
     fontWeight: "bold",
     color: "#092B3B",
   },
