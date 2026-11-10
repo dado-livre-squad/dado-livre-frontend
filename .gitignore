@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+.env
+/src/api
+
 # Expo
 .expo/
 dist/
