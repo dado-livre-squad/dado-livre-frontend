@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   listaContainer: {
   gap: 20,
   paddingVertical: 16,
-  paddingHorizontal: 12,
+  // paddingHorizontal: 12,
 },
   cartaoWrapper: {
     width: '100%',
