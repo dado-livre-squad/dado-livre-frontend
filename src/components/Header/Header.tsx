@@ -13,7 +13,7 @@ export default function Header() {
             <Image source={require('@/assets/images/logo/logo-vetorizada.png')} style={styles.image} />
           </Link>
         </View>
-        <Link href={'/perfil'}>
+        <Link href={'/(tabs)/perfil'}>
           <User color={'#FFF'} size={28}/>
         </Link>
       </View>

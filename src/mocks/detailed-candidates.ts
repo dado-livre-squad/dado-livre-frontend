@@ -10,7 +10,7 @@ export const detailedCandidatesList: DetailedCandidateModel[] = [
     image: require('../../assets/images/lula.jpg'),
     state: 'SP',
     about: 'Luiz Inácio Lula da Silva é um político e ex-sindicalista brasileiro, cofundador do Partido dos Trabalhadores (PT). Teve destaque na liderança das greves dos metalúrgicos no ABC Paulista nos anos 1970 e atuou historicamente na implementação de programas de assistência social, desenvolvimento econômico e diplomacia internacional.',
-    age: '78',
+    age: '81',
     roleType: 'Federal',
     socialMedia: [
       {

@@ -43,7 +43,6 @@ export default function TabsLayout() {
         }} />
         <Tabs.Screen name="perfil" options={{
           title: 'perfil',
-          href: null
         }} />
       </Tabs>
     </>
