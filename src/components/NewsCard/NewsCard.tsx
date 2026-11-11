@@ -1,27 +1,34 @@
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity } from "react-native";
 import NewsInfo from "./NewsInfo";
 
 type NewsCardProps = {
+
+  onPress: () => void;
   theme: string;
   title: string;
   date: string;
-  imageUrl: ImageSourcePropType;
+  imageUrl: string | ImageSourcePropType;
   
 }
 
-export default function NewsCard({theme, title, date, imageUrl}: NewsCardProps) {
+export default function NewsCard({theme, title, date, imageUrl, onPress,}: NewsCardProps) {
   return (
     <>
-      <View style={{ paddingHorizontal: 20 }}>
-        <View style={styles.container}>
-          <Image source={imageUrl} style={styles.image} />
-          <NewsInfo
+      <TouchableOpacity
+        style={styles.container}
+        onPress={onPress}
+        activeOpacity={0.85}
+      >
+        <Image
+          source={typeof imageUrl === "string" ? { uri: imageUrl } : imageUrl}
+          style={styles.image}
+        />
+        <NewsInfo
           theme={theme}
           title={title}
           date={date}
-          />
-        </View>
-      </View>
+        />
+      </TouchableOpacity>
     </>
   )
 }
@@ -29,7 +36,7 @@ export default function NewsCard({theme, title, date, imageUrl}: NewsCardProps) 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: 160,
+    height: 180,
     backgroundColor: 'white',
     borderRadius: 15,
     gap: 8,
@@ -41,6 +48,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 6,
     elevation: 5,
+    marginHorizontal: 18
   },
   image: {
     width: '35%',

@@ -8,47 +8,42 @@ import {
   View,
 } from "react-native";
 
-const destaques = [
-  {
-    categoria: "Política",
-    titulo: "Debates presidenciais têm datas confirmadas para outubro",
-    data: "01 Set 2026",
-    imagem: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
-  },
-  {
-    categoria: "Eleições",
-    titulo: "Conheça as principais notícias do cenário eleitoral",
-    data: "05 Set 2026",
-    imagem: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c",
-  },
-  {
-    categoria: "Brasil",
-    titulo: "Acompanhe as novidades da política brasileira",
-    data: "10 Set 2026",
-    imagem: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9",
-  },
-];
+import { router } from "expo-router";
+
+import { noticias } from "@/data/noticias";
+
+
+const destaques = noticias.filter((noticia) => noticia.destaque);
+
 
 export default function Carroussel() {
   const [indice, setIndice] = useState(0);
-  const fadeAnim = useRef(new Animated.Value(1)).current; // Valor inicial da opacidade
+  const fadeAnim = useRef(new Animated.Value(1)).current;
   const destaque = destaques[indice];
 
   function avancar() {
     setIndice((atual) => (atual + 1) % destaques.length);
   }
+    
+  function abrirNoticia() {
+  router.push({
+    pathname: "/noticia/[id]",
+    params: { id: destaque.id },
+  });
+}
 
-  function voltar() {
+
+  function voltar() { 
     setIndice(
       (atual) => (atual - 1 + destaques.length) % destaques.length
     );
   }
 
   useEffect(() => {
-    fadeAnim.setValue(0.3); 
+    fadeAnim.setValue(0.3);
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 450, 
+      duration: 450,
       useNativeDriver: true,
     }).start();
   }, [indice]);
@@ -61,21 +56,42 @@ export default function Carroussel() {
     return () => clearInterval(tempo);
   }, [indice]);
 
+
   return (
     <View style={styles.container}>
+      <View style={styles.cabecalho}>
+        <Text style={styles.tituloSecao}>DESTAQUES DA SEMANA</Text>
+        <TouchableOpacity onPress={() => router.push("/(tabs)/noticias")}>
+          <Text style={styles.verTodas}>Ver todas</Text>
+        </TouchableOpacity>
+      </View>
+
       <Animated.View style={{ opacity: fadeAnim }}>
+
         <ImageBackground
-          source={{ uri: destaque.imagem }}
+          source={
+            typeof destaque.imagem === "string"
+              ? { uri: destaque.imagem }
+              : destaque.imagem
+          }
           style={styles.banner}
           imageStyle={styles.imagem}
           resizeMode="cover"
         >
-          <View style={styles.sombra}>
-            <View style={styles.conteudo}>
+           <View style={styles.sombra}>
+             <TouchableOpacity
+              style={styles.conteudo}
+              activeOpacity={0.9}
+              onPress={() => {
+                console.log("CLIQUE NA NOTÍCIA");
+                abrirNoticia();
+              }}
+            >
               <Text style={styles.categoria}>{destaque.categoria}</Text>
               <Text style={styles.titulo}>{destaque.titulo}</Text>
               <Text style={styles.data}>{destaque.data}</Text>
-            </View>
+            </TouchableOpacity>
+          
 
             <TouchableOpacity
               style={[styles.seta, styles.esquerda]}
@@ -117,8 +133,32 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 12,
   },
+
+  cabecalho: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  tituloSecao: {
+    fontFamily: "RobotoSlab-Bold",
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#092B3B",
+  },
+  verTodas: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#092B3B",
+    backgroundColor: "#DCE7EC",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    overflow: "hidden",
+  },
+
   banner: {
-    height: 158,
+    height: 180,
     justifyContent: "flex-end",
     overflow: "hidden",
   },
@@ -199,3 +239,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
 });
+
