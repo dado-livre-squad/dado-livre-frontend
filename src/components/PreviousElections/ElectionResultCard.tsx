@@ -23,6 +23,7 @@ export default function ElectionResultCard({ result }: ElectionResultCardProps) 
       <View style={styles.body}>
         <CandidateResultInfo
           name={winner.name}
+          lastName={winner.lastName}
           party={winner.party}
           percentage={winner.percentage}
         />
