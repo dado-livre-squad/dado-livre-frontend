@@ -4,6 +4,7 @@ import { User } from "lucide-react-native";
 import { Image, StyleSheet, View } from "react-native";
 
 export default function Header() {
+
   return (
     <>
       <View style={styles.navContainer}>
