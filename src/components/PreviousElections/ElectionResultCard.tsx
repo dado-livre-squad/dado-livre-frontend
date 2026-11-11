@@ -1,4 +1,4 @@
-import { ElectionResult } from '@/models/ElectionResult'
+import { ElectionResult } from '@/models/election-result'
 import { StyleSheet, View } from 'react-native'
 import CandidateResultInfo from './CandidateResultInfo'
 import ElectionResultContainer from './ElectionResultContainer'

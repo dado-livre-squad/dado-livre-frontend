@@ -1,4 +1,4 @@
-import { ElectionResult } from '@/models/ElectionResult'
+import { ElectionResult } from '@/models/election-result'
 
 export const electionResults: ElectionResult[] = [
   {
@@ -7,7 +7,8 @@ export const electionResults: ElectionResult[] = [
     subtitle: 'Prefeitura · São Paulo, SP',
     round: 2,
     winner: {
-      name: 'Ricardo Nunes',
+      name: 'Ricardo',
+      lastName: 'Nunes',
       party: 'MDB',
       percentage: 59.35,
       votes: 3393110,
@@ -19,7 +20,8 @@ export const electionResults: ElectionResult[] = [
     subtitle: 'Presidência da República · Brasil',
     round: 2,
     winner: {
-      name: 'Luiz Inácio Lula da Silva',
+      name: 'Luiz',
+      lastName: 'Inácio Lula da Silva',
       party: 'PT',
       percentage: 50.9,
       votes: 60345999,
@@ -32,7 +34,8 @@ export const electionResults: ElectionResult[] = [
     round: 2,
     // TODO: o Figma corta este card; confirmar os valores reais no TSE
     winner: {
-      name: 'Tarcísio de Freitas',
+      name: 'Tarcísio',
+      lastName: 'de Freitas',
       party: 'REPUBLICANOS',
       percentage: 55.27,
       votes: 13479630,

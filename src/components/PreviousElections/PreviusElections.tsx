@@ -1,5 +1,5 @@
 import { mainColor } from '@/constants/color'
-import { ElectionResult } from '@/models/ElectionResult'
+import { ElectionResult } from '@/models/election-result'
 import { StyleSheet, Text, View } from 'react-native'
 import ElectionResultCard from './ElectionResultCard'
 

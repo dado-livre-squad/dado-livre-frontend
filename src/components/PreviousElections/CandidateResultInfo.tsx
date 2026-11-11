@@ -1,23 +1,23 @@
-//import { MaterialIcons } from '@expo/vector-icons'
 import { mainColor } from '@/constants/color';
+import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
-type Props = { name: string; party: string; percentage: number }
+type Props = { name: string; lastName: string; party: string; percentage: number }
 
-function getInitials(name: string) {
+function getInitials(name: string, lastName: string): string {
   const parts = name.trim().split(/\s+/)
   const first = parts[0]?.[0] ?? ''
-  const last = parts.length > 1 ? parts[parts.length - 1][0] : ''
+  const last = lastName.trim().charAt(0)
   return (first + last).toUpperCase()
 }
 
-export default function CandidateResultInfo({ name, party, percentage }: Props) {
+export default function CandidateResultInfo({ name, lastName, party, percentage }: Props) {
   return (
     <View style={styles.row}>
       <View style={styles.avatar}>
-        <Text style={styles.initials}>{getInitials(name)}</Text>
+        <Text style={styles.initials}>{getInitials(name, lastName)}</Text>
       </View>
-
+          <MaterialIcons name="verified" size={18} color="#1B6A8A" />
       <View style={styles.info}>
         <View style={styles.nameRow}>
           <Text style={styles.name} numberOfLines={1}>{name}</Text>
