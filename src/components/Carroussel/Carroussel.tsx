@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Animated,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Animated,
+    ImageBackground,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 import { router } from "expo-router";
 
-import { noticias } from "@/data/noticias";
+import { noticias } from "@/mocks/noticias";
 
 
 const destaques = noticias.filter((noticia) => noticia.destaque);

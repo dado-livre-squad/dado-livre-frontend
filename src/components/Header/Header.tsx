@@ -1,9 +1,10 @@
 import { mainColor } from "@/constants/color";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { User } from "lucide-react-native";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Header() {
+  const router = useRouter()
 
   return (
     <>
@@ -13,9 +14,9 @@ export default function Header() {
             <Image source={require('@/assets/images/logo/logo-vetorizada.png')} style={styles.image} />
           </Link>
         </View>
-        <Link href={'/(tabs)/perfil'}>
+        <Text onPress={() => router.push('/perfil')}>
           <User color={'#FFF'} size={28}/>
-        </Link>
+        </Text>
       </View>
     </>
   )

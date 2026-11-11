@@ -41,9 +41,6 @@ export default function TabsLayout() {
           tabBarIcon: ({ color, size, focused }) => <TabIcon color={color} size={size} focused={focused} Icon={ArrowUpDown} />,
           tabBarLabel: ({ color, focused }) => <TabLabel title='Comparar' color={color} focused={focused} />
         }} />
-        <Tabs.Screen name="perfil" options={{
-          title: 'perfil',
-        }} />
       </Tabs>
     </>
   )

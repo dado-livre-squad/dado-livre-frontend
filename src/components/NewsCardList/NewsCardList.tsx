@@ -1,4 +1,4 @@
-import { noticias } from "@/data/noticias";
+import { noticias } from "@/mocks/noticias";
 import { router } from "expo-router";
 import { FlatList, StyleSheet, View } from "react-native";
 import NewsCard from "../NewsCard/NewsCard";

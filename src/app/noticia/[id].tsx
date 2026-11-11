@@ -1,15 +1,15 @@
 
 import { Stack, useLocalSearchParams } from "expo-router";
 import {
-  Image,
-  Linking,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
+    Image,
+    Linking,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
 } from "react-native";
 
-import { noticias } from "@/data/noticias";
+import { noticias } from "@/mocks/noticias";
 
 
 export default function NoticiaDetalhe() {
