@@ -1,8 +1,9 @@
 import CandidateDetails from '@/components/CandidateDetails/CandidateDetails';
+import ErrorScreen from '@/components/ErrorScreen/ErrorScreen';
 import { detailedCandidatesList } from '@/mocks/detailed-candidates';
 import { DetailedCandidateModel } from '@/models/detailed-candidate.model';
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default function Details() {
   const { id } = useLocalSearchParams<{ id: string }>();

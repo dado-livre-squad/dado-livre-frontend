@@ -1,4 +1,6 @@
+import { BASE_URL } from "@/constants/base-url";
 import { mainColor } from "@/constants/color";
+import { ENV } from "@/constants/enviroment";
 import { Link } from "expo-router";
 import { Star } from "lucide-react-native";
 import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
@@ -8,7 +10,7 @@ import CardContentContainer from "./CardContentContainer";
 
 type CandidateCardProps = {
   id: string;
-  image: ImageSourcePropType,
+  image?: ImageSourcePropType | undefined,
   party: string,
   candidateName: string,
   role: string,
@@ -27,7 +29,10 @@ export default function CandidateCard({ id, image, party, candidateName, role, n
         <View style={styles.container}>
           <CardContainer>
             <View style={styles.imageWrapper}>
-              <Image source={image} style={styles.image} />
+              <Image
+                source={ENV.mock ? image : { uri: `${BASE_URL}/api/candidato/${id}/foto` }}
+                style={styles.image}
+              />
 
               <View style={styles.partyBadge}>
                 <Star size={14} color={'white'} />
