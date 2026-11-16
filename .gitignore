@@ -4,7 +4,8 @@
 node_modules/
 
 .env
-/src/api
+.env.dev
+.env.qa
 
 # Expo
 .expo/

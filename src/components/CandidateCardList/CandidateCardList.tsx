@@ -1,6 +1,11 @@
-import { candidatesList } from "@/mocks/candidates";
+import { ENV } from "@/constants/enviroment";
+import { CandidatoListResponseDTO as CandidatoListDTO } from "@/dto/candidato/candidate-list-response.dto";
+import { candidateService } from "@/services/candidate-service";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
+import ErrorScreen from "../ErrorScreen/ErrorScreen";
+import SpinLoader from "../SpinLoader/SpinLoader";
 
 interface CandidateCardListProps {
   footer?: React.ReactElement | null;
@@ -8,34 +13,48 @@ interface CandidateCardListProps {
 }
 
 export default function CandidateCardList({ footer, header }: CandidateCardListProps) {
+  const [candidatos, setCandidatos] = useState<CandidatoListDTO[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    candidateService
+      .listCandidates()
+      .then(setCandidatos)
+      .catch(() => setError("Não foi possível carregar os candidatos."))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <SpinLoader />;
+  if (error) return <ErrorScreen title="Erro" subTitle={error} />;
+
+  (ENV.appEnv)
 
   return (
-    <>
-      <View style={styles.tela}>
-        <FlatList
-          data={candidatesList}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          columnWrapperStyle={styles.linhaGrade}
-          contentContainerStyle={styles.listaContainer}
-          ListHeaderComponent={header ? header : <></>}
-          ListFooterComponent={footer ? footer : <></>}
-          renderItem={({ item }) => (
-            <View style={styles.cartaoWrapper}>
-                <CandidateCard
-                  candidateName={item.candidateName}
-                  number={item.number}
-                  party={item.party}
-                  role={item.role}
-                  image={item.image}
-                  id={item.id}
-                />
-            </View>
-          )}
-        />
-      </View>
-    </>
-  )
+    <View style={styles.tela}>
+      <FlatList
+        data={candidatos}
+        keyExtractor={(item) => item.idCandidato}
+        numColumns={2}
+        columnWrapperStyle={styles.linhaGrade}
+        contentContainerStyle={styles.listaContainer}
+        ListHeaderComponent={header ? header : <></>}
+        ListFooterComponent={footer ? footer : <></>}
+        renderItem={({ item }) => (
+          <View style={styles.cartaoWrapper}>
+            <CandidateCard
+              candidateName={item.nomeSocial}
+              number={item.partido.numero.toString()}
+              party={item.partido.sigla}
+              role={item.cargo.cargo}
+              id={item.idCandidato}
+              image={ENV.appEnv === 'dev' ? candidateService.candidatePhoto(item.idCandidato) : undefined}
+            />
+          </View>
+        )}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

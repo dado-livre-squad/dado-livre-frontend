@@ -1,40 +1,60 @@
-import { CandidateModel } from "@/models/canidate-card.model";
+import { CandidatoListResponseDTO } from "@/dto/candidato/candidate-list-response.dto";
 
-export const candidatesList: CandidateModel[] = [
+export const candidatesList: CandidatoListResponseDTO[] = [
   {
-    id: '1',
-    candidateName: "Lula da Silva",
-    number: "13",
-    party: "PT",
-    role: "Presidente",
-    image: require('../../assets/images/lula.jpg'),
-    state: 'SP'
+    idCandidato: '1',
+    nomeSocial: "Lula da Silva",
+    cargo: {
+      id: '1',
+      cargo: 'Presidente'
+    },
+    partido: {
+      id: '1',
+      nome: 'Partido dos Trabalhadores',
+      numero: 13,
+      sigla: 'PT'
+    },
   },
   {
-    id: '2',
-    candidateName: "Flávio Bolsonaro",
-    number: "22",
-    party: "PL",
-    role: "Presidente",
-    image: require('../../assets/images/flavio.jpg'),
-    state: 'SP'
+    idCandidato: '2',
+    nomeSocial: "Flávio Bolsonaro",
+    cargo: {
+      id: '1',
+      cargo: 'Presidente'
+    },
+    partido: {
+      id: '2',
+      nome: 'Partido Liberal',
+      numero: 22,
+      sigla: 'PL'
+    },
   },
   {
-    id: '3',
-    candidateName: "Renan Santos",
-    number: "14",
-    party: "MISSÃO",
-    role: "Presidente",
-    image: require('../../assets/images/renan.jpg'),
-    state: 'SP'
+    idCandidato: '3',
+    nomeSocial: "Renan Santos",
+    cargo: {
+      id: '1',
+      cargo: 'Presidente'
+    },
+    partido: {
+      id: '3',
+      nome: 'Partido Missão',
+      numero: 14,
+      sigla: 'MISSÃO'
+    },
   },
   {
-    id: '4',
-    candidateName: "Augusto Cury",
-    number: "70",
-    party: "AVANTE",
-    role: "Presidente",
-    image: require('../../assets/images/cury.jpg'),
-    state: 'SP'
+    idCandidato: '4',
+    nomeSocial: "Augusto Cury",
+    cargo: {
+      id: '1',
+      cargo: 'Presidente'
+    },
+    partido: {
+      id: '4',
+      nome: 'Avante',
+      numero: 70,
+      sigla: 'AVANTE'
+    },
   }
 ];

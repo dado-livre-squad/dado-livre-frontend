@@ -1,0 +1,1 @@
+export const BASE_URL: string = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL : ''
