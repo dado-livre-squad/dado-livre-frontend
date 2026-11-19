@@ -1,4 +1,5 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text } from "react-native";
 
 type CardTitleProps = {
@@ -6,6 +7,8 @@ type CardTitleProps = {
 }
 
 export default function CardTitle({children}: CardTitleProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <Text style={styles.title}>
@@ -15,10 +18,10 @@ export default function CardTitle({children}: CardTitleProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   title: {
     fontSize: 16,
-    color: mainColor,
+    color: t.title,
     fontFamily: 'RobotoSlab-SemiBold'
   }
 })

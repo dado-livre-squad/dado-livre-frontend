@@ -1,10 +1,17 @@
-import { mainColor } from "@/constants/color";
-import { Link, useRouter } from "expo-router";
+import type { Theme } from "@/constants/theme";
+import { useTheme, useThemedStyles } from "@/contexts/ThemeContext";
+import { Link, usePathname, useRouter } from "expo-router";
 import { User } from "lucide-react-native";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Header() {
   const router = useRouter()
+  const { theme } = useTheme()
+  const styles = useThemedStyles(createStyles)
+  const pathname = usePathname()
+
+
+  if (pathname === '/perfil') return <></>
 
   return (
     <>
@@ -15,20 +22,20 @@ export default function Header() {
           </Link>
         </View>
         <Text onPress={() => router.push('/perfil')}>
-          <User color={'#FFF'} size={28}/>
+          <User color={theme.headerTint} size={28}/>
         </Text>
       </View>
     </>
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   image: {
     width: 55,
     height: 50
   },
   navContainer: {
-    backgroundColor: mainColor,
+    backgroundColor: t.header,
     height: 110,
     display: 'flex',
     flexDirection: 'row',
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 28,
-    color: '#FFF',
+    color: t.headerTint,
     fontWeight: 'bold'
   }
 })

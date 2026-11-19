@@ -10,9 +10,12 @@ import {
 } from "react-native";
 
 import { noticias } from "@/mocks/noticias";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 
 
 export default function NoticiaDetalhe() {
+  const styles = useThemedStyles(createStyles);
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const noticia = noticias.find((item) => item.id === id);
@@ -75,20 +78,20 @@ export default function NoticiaDetalhe() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: t.background,
   },
   imagem: {
     width: "100%",
     height: 250,
-    backgroundColor: "#E5E5E5",
+    backgroundColor: t.imagePlaceholder,
   },
   categoria: {
     marginTop: 20,
     marginHorizontal: 18,
-    color: "#B91C1C",
+    color: t.danger,
     fontSize: 14,
     fontWeight: "700",
   },
@@ -98,27 +101,27 @@ const styles = StyleSheet.create({
     fontSize: 25,
     lineHeight: 32,
     fontWeight: "bold",
-    color: "#171717",
+    color: t.text,
   },
   data: {
     marginTop: 12,
     marginHorizontal: 18,
     fontSize: 12,
-    color: "#737373",
+    color: t.muted,
   },
   subtitulo: {
     marginTop: 25,
     marginHorizontal: 18,
     fontSize: 19,
     fontWeight: "bold",
-    color: "#171717",
+    color: t.text,
   },
   resumo: {
     marginTop: 10,
     marginHorizontal: 18,
     fontSize: 16,
     lineHeight: 25,
-    color: "#404040",
+    color: t.text,
   },
   botao: {
     margin: 18,
@@ -126,17 +129,17 @@ const styles = StyleSheet.create({
     marginBottom: 35,
     paddingVertical: 15,
     borderRadius: 8,
-    backgroundColor: "#092B3B",
+    backgroundColor: t.cta,
     alignItems: "center",
   },
   textoBotao: {
-    color: "#FFFFFF",
+    color: t.ctaText,
     fontSize: 16,
     fontWeight: "bold",
   },
   erro: {
     padding: 20,
     fontSize: 16,
-    color: "#404040",
+    color: t.text,
   },
 });

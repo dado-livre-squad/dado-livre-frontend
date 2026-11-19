@@ -1,4 +1,5 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 
 type CandidateNumberProps = {
@@ -6,6 +7,8 @@ type CandidateNumberProps = {
 } 
 
 export default function CandidateNumber({number}: CandidateNumberProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.numberContainer}>
@@ -16,9 +19,9 @@ export default function CandidateNumber({number}: CandidateNumberProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   numberContainer: {
-    backgroundColor: mainColor,
+    backgroundColor: t.primary,
     borderRadius: 12,
     display: 'flex',
     justifyContent: 'center',

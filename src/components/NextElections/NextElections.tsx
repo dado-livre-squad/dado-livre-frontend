@@ -1,9 +1,12 @@
-import { mainColor } from '@/constants/color'
+import type { Theme } from '@/constants/theme'
+import { useThemedStyles } from '@/contexts/ThemeContext'
 import { StyleSheet, Text, View } from 'react-native'
 import NextElectionContainer from './NextElectionContainer'
 import NextElectionInfo from './NextElectionInfo'
 
 export default function NextElections() {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.container}>
@@ -31,7 +34,7 @@ export default function NextElections() {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     marginTop: 20,
     display: 'flex',
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'RobotoSlab-SemiBold',
-    color: mainColor,
+    color: t.title,
     fontSize: 18
   },
 })

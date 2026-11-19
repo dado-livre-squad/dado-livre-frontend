@@ -1,4 +1,5 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -8,6 +9,8 @@ type ErrorScreenProps = {
 }
 
 export default function ErrorScreen({title, subTitle}: ErrorScreenProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.container}>
@@ -25,22 +28,23 @@ export default function ErrorScreen({title, subTitle}: ErrorScreenProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    paddingBottom: 150
+    paddingBottom: 150,
+    backgroundColor: t.background
   },
   title: {
     fontFamily: 'RobotoSlab-Regular',
     fontSize: 48,
-    color: mainColor
+    color: t.title
   },
   subTitle: {
     fontFamily: 'Nunito-Medium',
-    color: mainColor,
+    color: t.title,
     fontSize: 18
   },
   innerContainer: {
@@ -49,8 +53,8 @@ const styles = StyleSheet.create({
     gap: 50
   },
   homeLink: {
-    backgroundColor: mainColor,
-    color: 'white',
+    backgroundColor: t.cta,
+    color: t.ctaText,
     padding: 14,
     borderRadius: 8,
     fontFamily: 'RobotoSlab-Regular'

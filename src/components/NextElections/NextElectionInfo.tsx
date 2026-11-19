@@ -1,3 +1,5 @@
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 
 type NextElectionInfoProps = {
@@ -8,6 +10,8 @@ type NextElectionInfoProps = {
 }
 
 export default function NextElectionInfo({electionsType, date, turn, day}: NextElectionInfoProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.innerNewsContainer}>
@@ -30,7 +34,7 @@ export default function NextElectionInfo({electionsType, date, turn, day}: NextE
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
     innerNewsContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -38,11 +42,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   innerNewsContainerMainText: {
-    color: 'white',
+    color: t.onPrimary,
     fontFamily: 'RobotoSlab-Bold'
   },
   innerNewsContainerSubText: {
-    color: '#74a09d',
+    color: t.primaryMuted,
     fontFamily: 'RobotoSlab-Regular'
   }
 })
