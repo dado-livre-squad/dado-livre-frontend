@@ -1,5 +1,6 @@
+import { useTheme } from "@/contexts/ThemeContext";
 import { useEffect, useRef } from "react";
-import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Easing, View, ViewStyle } from "react-native";
 
 type LoadingIconProps = {
   /** Tamanho total do ícone em px */
@@ -13,10 +14,13 @@ type LoadingIconProps = {
 
 export default function LoadingIcon({
   size = 56,
-  color = "#04273a",  
+  color,
   thickness = 5,
   style,
 }: LoadingIconProps) {
+  const { theme } = useTheme();
+  const spinnerColor = color ?? theme.accent;
+
   const rotation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -36,7 +40,6 @@ export default function LoadingIcon({
     };
   }, [rotation]);
 
-
   const rotate = rotation.interpolate({
     inputRange: [0, 1],
     outputRange: ["0deg", "360deg"],
@@ -51,12 +54,12 @@ export default function LoadingIcon({
     >
       <View
         style={{
-          width: '100%', 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          height: '100%', 
-          position: 'relative'
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          position: "relative",
         }}
       />
 
@@ -68,26 +71,14 @@ export default function LoadingIcon({
           borderRadius: ringSize / 2,
           borderWidth: thickness,
           borderColor: "transparent",
-          borderTopColor: color,
-          borderRightColor: color,
+          borderTopColor: spinnerColor,
+          borderRightColor: spinnerColor,
           transform: [{ rotate }],
           marginTop: 300,
           marginLeft: 165,
-          opacity: 0.5
+          opacity: 0.5,
         }}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#04273a",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 6,
-    elevation: 4,
-  },
-});

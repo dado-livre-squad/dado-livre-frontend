@@ -1,7 +1,13 @@
+import { ENV } from "@/constants/enviroment";
 import type { Theme } from "@/constants/theme";
 import { useThemedStyles } from "@/contexts/ThemeContext";
+import { CandidatoListResponseDTO } from "@/dto/candidato/candidate-list-response.dto";
+import { candidateService } from "@/services/candidate-service";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
+import ErrorScreen from "../ErrorScreen/ErrorScreen";
+import SpinLoader from "../SpinLoader/SpinLoader";
 
 interface CandidateCardListProps {
   footer?: React.ReactElement | null;
@@ -10,6 +16,20 @@ interface CandidateCardListProps {
 
 export default function CandidateCardList({ footer, header }: CandidateCardListProps) {
   const styles = useThemedStyles(createStyles)
+  const [candidatos, setCandidatos] = useState<CandidatoListResponseDTO[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    candidateService
+      .listCandidates()
+      .then(setCandidatos)
+      .catch(() => setError("Não foi possível carregar os candidatos."))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <SpinLoader/>
+  if (error) return <ErrorScreen title="Erro" subTitle={error}/>
 
   return (
     <View style={styles.tela}>

@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/constants/base-url";
+import { ENV } from "@/constants/enviroment";
 import type { Theme } from "@/constants/theme";
 import { useThemedStyles } from "@/contexts/ThemeContext";
 import { Link } from "expo-router";

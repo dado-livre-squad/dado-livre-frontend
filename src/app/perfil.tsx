@@ -1,3 +1,5 @@
+import { type Theme } from "@/constants/theme";
+import { useTheme, useThemedStyles } from "@/contexts/ThemeContext";
 import { Stack, router } from "expo-router";
 import {
   Accessibility,
@@ -8,7 +10,7 @@ import {
   Moon,
   User,
 } from "lucide-react-native";
-import { useMemo, useState, type ComponentType } from "react";
+import { useState, type ComponentType } from "react";
 import {
   Pressable,
   ScrollView,
@@ -24,41 +26,6 @@ const FONT_TITLE = "RobotoSlab-Bold";
 const FONT_BODY = "Nunito-Regular";
 const FONT_BODY_BOLD = "Nunito-Bold";
 
-const lightTheme = {
-  background: "#F4F8FB",
-  surface: "#FFFFFF",
-  border: "#E6ECF0",
-  iconBox: "#E3EDF3",
-  text: "#062B3D",
-  muted: "#7B8A96",
-  trackOff: "#D5DDE3",
-  trackOn: "#062B3D",
-  thumb: "#FFFFFF",
-  header: "#062B3D",
-  headerTint: "#FFFFFF",
-  cta: "#062B3D",
-  ctaText: "#FFFFFF",
-  ctaMuted: "#C9D6DF",
-};
-
-const darkTheme: typeof lightTheme = {
-  background: "#0A1720",
-  surface: "#112430",
-  border: "#1E3645",
-  iconBox: "#1B3443",
-  text: "#E8F1F6",
-  muted: "#8FA3B1",
-  trackOff: "#3A4F5C",
-  trackOn: "#4DA3D4",
-  thumb: "#FFFFFF",
-  header: "#04141D",
-  headerTint: "#FFFFFF",
-  cta: "#1C4A63",
-  ctaText: "#FFFFFF",
-  ctaMuted: "#B7CAD6",
-};
-
-type Theme = typeof lightTheme;
 type Styles = ReturnType<typeof createStyles>;
 type IconType = ComponentType<{ size?: number; color?: string }>;
 
@@ -149,26 +116,23 @@ function SettingRow({
 }
 
 export default function PerfilScreen() {
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, isDark, setDarkMode } = useTheme();
+  const styles = useThemedStyles(createStyles);
+
   const [notifications, setNotifications] = useState(true);
   const [reminders, setReminders] = useState(true);
-
-  const theme = darkMode ? darkTheme : lightTheme;
-  const styles = useMemo(() => createStyles(theme), [theme]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: "Perfil", //Não esquecer de descomentar se eu quiser colocar o titulo 
+          title: "Perfil",
           headerShown: true,
           headerShadowVisible: false,
           headerStyle: {
             backgroundColor: theme.header,
-
           },
           headerTintColor: theme.headerTint,
-          
           headerTitleStyle: {
             fontFamily: FONT_TITLE,
             fontWeight: "normal",
@@ -219,8 +183,8 @@ export default function PerfilScreen() {
           <SettingRow
             icon={Moon}
             title="Fundo escuro"
-            description={darkMode ? "Ativado" : "Desativado"}
-            value={darkMode}
+            description={isDark ? "Ativado" : "Desativado"}
+            value={isDark}
             onValueChange={setDarkMode}
             theme={theme}
             styles={styles}
@@ -294,8 +258,6 @@ const createStyles = (t: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    // AJUSTE AQUI (Header interno / Hero): Para mudar a grossura do título "Olá, usuário",
-    // altere o fontFamily (ex.: "RobotoSlab-Regular", "RobotoSlab-SemiBold", "RobotoSlab-Bold") ou adicione fontWeight
     greeting: {
       fontFamily: FONT_TITLE,
       fontSize: 22,

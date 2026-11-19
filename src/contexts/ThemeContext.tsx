@@ -1,12 +1,17 @@
 import { darkTheme, lightTheme, type Theme } from "@/constants/theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
+import { useColorScheme } from "react-native";
+
+const THEME_STORAGE_KEY = "@dado_livre:theme_is_dark";
 
 type ThemeContextValue = {
   theme: Theme;
@@ -18,18 +23,45 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState(false);
+  const systemColorScheme = useColorScheme();
+  const [isDark, setIsDark] = useState(systemColorScheme === "dark");
 
-  const toggleTheme = useCallback(() => setIsDark((prev) => !prev), []);
+  useEffect(() => {
+    let isMounted = true;
+
+    AsyncStorage.getItem(THEME_STORAGE_KEY)
+      .then((savedValue) => {
+        if (!isMounted || savedValue === null) return;
+        setIsDark(savedValue === "true");
+      })
+      .catch(() => {});
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const setDarkMode = useCallback((value: boolean) => {
+    setIsDark(value);
+    AsyncStorage.setItem(THEME_STORAGE_KEY, String(value)).catch(() => {});
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    setIsDark((prev) => {
+      const next = !prev;
+      AsyncStorage.setItem(THEME_STORAGE_KEY, String(next)).catch(() => {});
+      return next;
+    });
+  }, []);
 
   const value = useMemo<ThemeContextValue>(
     () => ({
       theme: isDark ? darkTheme : lightTheme,
       isDark,
-      setDarkMode: setIsDark,
+      setDarkMode,
       toggleTheme,
     }),
-    [isDark, toggleTheme]
+    [isDark, setDarkMode, toggleTheme]
   );
 
   return (
