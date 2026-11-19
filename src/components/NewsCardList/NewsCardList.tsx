@@ -1,3 +1,5 @@
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { noticias } from "@/mocks/noticias";
 import { router } from "expo-router";
 import { FlatList, StyleSheet, View } from "react-native";
@@ -11,6 +13,8 @@ interface NewsardListProps {
 const newsList = noticias.filter((noticia) => !noticia.destaque);
 
 export default function NewsCardList({ header, footer }: NewsardListProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <View style={styles.tela}>
       <FlatList
@@ -38,9 +42,9 @@ export default function NewsCardList({ header, footer }: NewsardListProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   tela: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: t.background,
     flex: 1,
   },
 

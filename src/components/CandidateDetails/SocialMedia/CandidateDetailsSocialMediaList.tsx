@@ -1,3 +1,5 @@
+import type { Theme } from '@/constants/theme';
+import { useThemedStyles } from '@/contexts/ThemeContext';
 import { SocialMedia } from '@/models/social-media.model';
 import { StyleSheet, Text, View } from 'react-native';
 import InfoContainer from '../../InfoContainer/CandidateDetailsContainer';
@@ -8,6 +10,8 @@ type CandidateDetailsSocialMediaListProps = {
 }
 
 export default function CandidateDetailsSocialMediaList({ socialMedias = [] }: CandidateDetailsSocialMediaListProps) {
+  const styles = useThemedStyles(createStyles)
+
   if (socialMedias.length === 0) return null;
 
   return (
@@ -22,9 +26,10 @@ export default function CandidateDetailsSocialMediaList({ socialMedias = [] }: C
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   title: {
     fontFamily: 'Nunito-ExtraBold',
+    color: t.text,
   },
   listContainer: {
     display: 'flex',

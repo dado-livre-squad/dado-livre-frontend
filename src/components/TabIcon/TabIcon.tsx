@@ -1,3 +1,4 @@
+import { useTheme } from "@/contexts/ThemeContext"
 import { ColorValue, StyleSheet, View } from "react-native"
 
 export type TabIconProps = {
@@ -8,10 +9,12 @@ export type TabIconProps = {
 }
 
 export default function TabIcon({ color, size, focused, Icon }: TabIconProps) {
+  const { theme } = useTheme()
+
   return (
     <>
       {focused ? (
-        <View style={[styles.iconContainer, { backgroundColor: '#dee6e8'}]}>
+        <View style={[styles.iconContainer, { backgroundColor: theme.tabFocusedBg }]}>
           <Icon color={color} size={size} />
         </View>
       ) : (

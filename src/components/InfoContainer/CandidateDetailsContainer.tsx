@@ -1,3 +1,5 @@
+import type { Theme } from '@/constants/theme'
+import { useThemedStyles } from '@/contexts/ThemeContext'
 import { StyleSheet, View } from 'react-native'
 
 type InfoContainerProps = {
@@ -5,6 +7,8 @@ type InfoContainerProps = {
 }
 
 export default function InfoContainer({ children }: InfoContainerProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.container}>
@@ -14,15 +18,15 @@ export default function InfoContainer({ children }: InfoContainerProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: t.surface,
     height: 'auto',
     marginHorizontal: 25,
     borderRadius: 8,
     padding: 12,
     gap: 8,
-    shadowColor: '#000000',
+    shadowColor: t.shadow,
     shadowOffset: {
       width: 0,
       height: 4,

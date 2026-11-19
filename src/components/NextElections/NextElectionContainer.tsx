@@ -1,4 +1,5 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, View } from "react-native";
 
 type NewsContainerProps = {
@@ -6,6 +7,8 @@ type NewsContainerProps = {
 }
 
 export default function NextElectionContainer({ children }: NewsContainerProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.container}>
@@ -15,9 +18,9 @@ export default function NextElectionContainer({ children }: NewsContainerProps) 
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
-    backgroundColor: mainColor,
+    backgroundColor: t.primary,
     height: 70,
     borderRadius: 10,
     paddingHorizontal: 18,
