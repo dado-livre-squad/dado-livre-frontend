@@ -28,7 +28,6 @@ export default function CandidateCardList({ footer, header }: CandidateCardListP
   if (loading) return <SpinLoader />;
   if (error) return <ErrorScreen title="Erro" subTitle={error} />;
 
-  (ENV.appEnv)
 
   return (
     <View style={styles.tela}>
