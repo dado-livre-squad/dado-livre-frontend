@@ -1,3 +1,5 @@
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { Image, ImageSourcePropType, StyleSheet, TouchableOpacity } from "react-native";
 import NewsInfo from "./NewsInfo";
 
@@ -12,6 +14,8 @@ type NewsCardProps = {
 }
 
 export default function NewsCard({theme, title, date, imageUrl, onPress,}: NewsCardProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <TouchableOpacity
@@ -33,14 +37,14 @@ export default function NewsCard({theme, title, date, imageUrl, onPress,}: NewsC
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 180,
-    backgroundColor: 'white',
+    backgroundColor: t.surface,
     borderRadius: 15,
     gap: 8,
-    shadowColor: '#000000',
+    shadowColor: t.shadow,
     shadowOffset: {
       width: 0,
       height: 4,

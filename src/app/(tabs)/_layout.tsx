@@ -1,18 +1,27 @@
 import TabIcon from "@/components/TabIcon/TabIcon";
-import { mainColor } from "@/constants/color";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Tabs } from "expo-router";
 import { ArrowUpDown, CalendarDays, Home, Newspaper, Users } from 'lucide-react-native';
 import TabLabel from "../../components/TabLabel/TabLabel";
 
 export default function TabsLayout() {
+  const { theme } = useTheme();
+
   return (
     <>
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: mainColor,
-          tabBarInactiveTintColor: '#94a3b8',
-          tabBarStyle: { height: 70, paddingBottom: 8, paddingTop: 2 },
+          tabBarActiveTintColor: theme.tabActive,
+          tabBarInactiveTintColor: theme.tabInactive,
+          tabBarStyle: {
+            height: 70,
+            paddingBottom: 8,
+            paddingTop: 2,
+            backgroundColor: theme.tabBar,
+            borderTopColor: theme.tabBarBorder,
+          },
+          sceneStyle: { backgroundColor: theme.background },
           animation: 'shift'
         }}
       >

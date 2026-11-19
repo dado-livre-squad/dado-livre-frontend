@@ -1,3 +1,5 @@
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text } from "react-native";
 import InfoContainer from "../InfoContainer/CandidateDetailsContainer";
 
@@ -6,6 +8,8 @@ type CandidateDetailsAboutProps = {
 }
 
 export default function CandidateDetailsAbout({ about }: CandidateDetailsAboutProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <InfoContainer>
@@ -16,11 +20,13 @@ export default function CandidateDetailsAbout({ about }: CandidateDetailsAboutPr
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   title: {
-    fontFamily: 'Nunito-ExtraBold'
+    fontFamily: 'Nunito-ExtraBold',
+    color: t.text
   },
   about: {
-    fontFamily: 'Nunito-Medium'
+    fontFamily: 'Nunito-Medium',
+    color: t.text
   }
 })

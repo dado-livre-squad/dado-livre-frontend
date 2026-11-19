@@ -1,6 +1,5 @@
-import { BASE_URL } from "@/constants/base-url";
-import { mainColor } from "@/constants/color";
-import { ENV } from "@/constants/enviroment";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { Link } from "expo-router";
 import { Star } from "lucide-react-native";
 import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
@@ -18,6 +17,8 @@ type CandidateCardProps = {
 }
 
 export default function CandidateCard({ id, image, party, candidateName, role, number }: CandidateCardProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <Link href={{
@@ -50,7 +51,7 @@ export default function CandidateCard({ id, image, party, candidateName, role, n
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     display: 'flex',
     alignItems: 'center',
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     left: 8,
-    backgroundColor: mainColor,
+    backgroundColor: t.primary,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   partyText: {
-    color: '#ffffff',
+    color: t.onPrimary,
     fontFamily: 'Nunito-Medium',
     fontWeight: 'bold',
     fontSize: 12,

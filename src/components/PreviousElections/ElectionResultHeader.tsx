@@ -1,9 +1,12 @@
-import { mainColor } from '@/constants/color';
+import type { Theme } from '@/constants/theme';
+import { useThemedStyles } from '@/contexts/ThemeContext';
 import { StyleSheet, Text, View } from 'react-native';
 
 type Props = { title: string; subtitle: string; round: 1 | 2 }
 
 export default function ElectionResultHeader({ title, subtitle, round }: Props) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <View style={styles.row}>
       <View style={styles.texts}>
@@ -17,11 +20,11 @@ export default function ElectionResultHeader({ title, subtitle, round }: Props) 
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   texts: { flex: 1, paddingRight: 8 },
-  title: { fontFamily: 'RobotoSlab-SemiBold', fontSize: 14, color: mainColor },
-  subtitle: { fontSize: 12, color: '#6B7C8C', marginTop: 2 },
-  badge: { backgroundColor: '#E6EEF3', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999 },
-  badgeText: { fontSize: 11, fontWeight: '700', color: '#3F6277' },
+  title: { fontFamily: 'RobotoSlab-SemiBold', fontSize: 14, color: t.title },
+  subtitle: { fontSize: 12, color: t.muted, marginTop: 2 },
+  badge: { backgroundColor: t.chip, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999 },
+  badgeText: { fontSize: 11, fontWeight: '700', color: t.chipText },
 })

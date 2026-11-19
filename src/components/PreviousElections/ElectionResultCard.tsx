@@ -1,3 +1,5 @@
+import type { Theme } from '@/constants/theme'
+import { useThemedStyles } from '@/contexts/ThemeContext'
 import { ElectionResult } from '@/models/election-result'
 import { StyleSheet, View } from 'react-native'
 import CandidateResultInfo from './CandidateResultInfo'
@@ -10,6 +12,7 @@ type ElectionResultCardProps = {
 }
 
 export default function ElectionResultCard({ result }: ElectionResultCardProps) {
+  const styles = useThemedStyles(createStyles)
   const { title, subtitle, round, winner } = result
 
   return (
@@ -33,8 +36,8 @@ export default function ElectionResultCard({ result }: ElectionResultCardProps) 
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   header: { padding: 16 },
-  divider: { height: 1, backgroundColor: '#EEF1F4' },
+  divider: { height: 1, backgroundColor: t.border },
   body: { padding: 16, gap: 14 },
 })

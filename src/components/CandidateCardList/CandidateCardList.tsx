@@ -1,7 +1,6 @@
-import { ENV } from "@/constants/enviroment";
-import { CandidatoListResponseDTO as CandidatoListDTO } from "@/dto/candidato/candidate-list-response.dto";
-import { candidateService } from "@/services/candidate-service";
-import { useEffect, useState } from "react";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
+import { candidatesList } from "@/mocks/candidates";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
 import ErrorScreen from "../ErrorScreen/ErrorScreen";
@@ -13,22 +12,7 @@ interface CandidateCardListProps {
 }
 
 export default function CandidateCardList({ footer, header }: CandidateCardListProps) {
-  const [candidatos, setCandidatos] = useState<CandidatoListDTO[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    candidateService
-      .listCandidates()
-      .then(setCandidatos)
-      .catch(() => setError("Não foi possível carregar os candidatos."))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <SpinLoader />;
-  if (error) return <ErrorScreen title="Erro" subTitle={error} />;
-
-  (ENV.appEnv)
+  const styles = useThemedStyles(createStyles)
 
   return (
     <View style={styles.tela}>
@@ -57,10 +41,10 @@ export default function CandidateCardList({ footer, header }: CandidateCardListP
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   tela: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: t.background,
   },
   listaContainer: {
     padding: 14,

@@ -1,4 +1,5 @@
-import { mainColor } from '@/constants/color';
+import type { Theme } from '@/constants/theme';
+import { useTheme, useThemedStyles } from '@/contexts/ThemeContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -12,12 +13,15 @@ function getInitials(name: string, lastName: string): string {
 }
 
 export default function CandidateResultInfo({ name, lastName, party, percentage }: Props) {
+  const { theme } = useTheme()
+  const styles = useThemedStyles(createStyles)
+
   return (
     <View style={styles.row}>
       <View style={styles.avatar}>
         <Text style={styles.initials}>{getInitials(name, lastName)}</Text>
       </View>
-          <MaterialIcons name="verified" size={18} color="#1B6A8A" />
+          <MaterialIcons name="verified" size={18} color={theme.accent} />
       <View style={styles.info}>
         <View style={styles.nameRow}>
           <Text style={styles.name} numberOfLines={1}>{name}</Text>
@@ -33,16 +37,16 @@ export default function CandidateResultInfo({ name, lastName, party, percentage 
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   avatar: {
     width: 56, height: 56, borderRadius: 14,
-    backgroundColor: mainColor, alignItems: 'center', justifyContent: 'center',
+    backgroundColor: t.primary, alignItems: 'center', justifyContent: 'center',
   },
-  initials: { color: '#fff', fontSize: 18, fontFamily: 'RobotoSlab-SemiBold' },
+  initials: { color: t.onPrimary, fontSize: 18, fontFamily: 'RobotoSlab-SemiBold' },
   info: { flex: 1 },
   nameRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  name: { flexShrink: 1, fontFamily: 'RobotoSlab-SemiBold', fontSize: 16, color: mainColor },
-  party: { fontSize: 13, color: '#1B6A8A', marginTop: 2 },
-  percentage: { fontSize: 20, fontWeight: '800', color: mainColor },
+  name: { flexShrink: 1, fontFamily: 'RobotoSlab-SemiBold', fontSize: 16, color: t.title },
+  party: { fontSize: 13, color: t.accent, marginTop: 2 },
+  percentage: { fontSize: 20, fontWeight: '800', color: t.title },
 })

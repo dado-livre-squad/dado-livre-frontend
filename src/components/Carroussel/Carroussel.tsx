@@ -11,12 +11,15 @@ import {
 import { router } from "expo-router";
 
 import { noticias } from "@/mocks/noticias";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 
 
 const destaques = noticias.filter((noticia) => noticia.destaque);
 
 
 export default function Carroussel() {
+  const styles = useThemedStyles(createStyles);
   const [indice, setIndice] = useState(0);
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const destaque = destaques[indice];
@@ -128,7 +131,7 @@ export default function Carroussel() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     marginTop: 12,
   },
@@ -143,13 +146,13 @@ const styles = StyleSheet.create({
     fontFamily: "RobotoSlab-Bold",
     fontSize: 16,
     fontWeight: "bold",
-    color: "#092B3B",
+    color: t.title,
   },
   verTodas: {
     fontSize: 12,
     fontWeight: "600",
-    color: "#092B3B",
-    backgroundColor: "#DCE7EC",
+    color: t.chipText,
+    backgroundColor: t.chip,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
@@ -178,7 +181,7 @@ const styles = StyleSheet.create({
   },
   categoria: {
     color: "#FFFFFF",
-    backgroundColor: "#092B3B",
+    backgroundColor: t.primary,
     alignSelf: "flex-start",
     paddingHorizontal: 8,
     paddingVertical: 3,
