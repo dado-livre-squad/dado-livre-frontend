@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import {
-    Animated,
-    ImageBackground,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Animated,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 import { router } from "expo-router";
@@ -86,7 +86,6 @@ export default function Carroussel() {
               style={styles.conteudo}
               activeOpacity={0.9}
               onPress={() => {
-                console.log("CLIQUE NA NOTÍCIA");
                 abrirNoticia();
               }}
             >

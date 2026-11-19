@@ -3,6 +3,8 @@ import { useThemedStyles } from "@/contexts/ThemeContext";
 import { candidatesList } from "@/mocks/candidates";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
+import ErrorScreen from "../ErrorScreen/ErrorScreen";
+import SpinLoader from "../SpinLoader/SpinLoader";
 
 interface CandidateCardListProps {
   footer?: React.ReactElement | null;
@@ -13,32 +15,30 @@ export default function CandidateCardList({ footer, header }: CandidateCardListP
   const styles = useThemedStyles(createStyles)
 
   return (
-    <>
-      <View style={styles.tela}>
-        <FlatList
-          data={candidatesList}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          columnWrapperStyle={styles.linhaGrade}
-          contentContainerStyle={styles.listaContainer}
-          ListHeaderComponent={header ? header : <></>}
-          ListFooterComponent={footer ? footer : <></>}
-          renderItem={({ item }) => (
-            <View style={styles.cartaoWrapper}>
-                <CandidateCard
-                  candidateName={item.candidateName}
-                  number={item.number}
-                  party={item.party}
-                  role={item.role}
-                  image={item.image}
-                  id={item.id}
-                />
-            </View>
-          )}
-        />
-      </View>
-    </>
-  )
+    <View style={styles.tela}>
+      <FlatList
+        data={candidatos}
+        keyExtractor={(item) => item.idCandidato}
+        numColumns={2}
+        columnWrapperStyle={styles.linhaGrade}
+        contentContainerStyle={styles.listaContainer}
+        ListHeaderComponent={header ? header : <></>}
+        ListFooterComponent={footer ? footer : <></>}
+        renderItem={({ item }) => (
+          <View style={styles.cartaoWrapper}>
+            <CandidateCard
+              candidateName={item.nomeSocial}
+              number={item.partido.numero.toString()}
+              party={item.partido.sigla}
+              role={item.cargo.cargo}
+              id={item.idCandidato}
+              image={ENV.appEnv === 'dev' ? candidateService.candidatePhoto(item.idCandidato) : undefined}
+            />
+          </View>
+        )}
+      />
+    </View>
+  );
 }
 
 const createStyles = (t: Theme) => StyleSheet.create({
