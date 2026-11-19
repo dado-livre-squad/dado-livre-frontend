@@ -1,4 +1,5 @@
-import { mainColor } from '@/constants/color'
+import type { Theme } from '@/constants/theme'
+import { useThemedStyles } from '@/contexts/ThemeContext'
 import { ElectionResult } from '@/models/election-result'
 import { StyleSheet, Text, View } from 'react-native'
 import ElectionResultCard from './ElectionResultCard'
@@ -8,6 +9,8 @@ type PreviusElectionsProps = {
 }
 
 export default function PreviusElections({ results }: PreviusElectionsProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <View style={styles.container}>
       <View>
@@ -26,7 +29,7 @@ export default function PreviusElections({ results }: PreviusElectionsProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     marginTop: 20,
     display: 'flex',
@@ -36,11 +39,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'RobotoSlab-SemiBold',
-    color: mainColor,
+    color: t.title,
     fontSize: 18
   },
   subtitle: {
-    color: '#6B7C8C', // TODO: mover para constants/color se já não existir
+    color: t.muted,
     fontSize: 13,
     marginTop: 2
   },

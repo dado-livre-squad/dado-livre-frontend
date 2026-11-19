@@ -1,3 +1,5 @@
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 
 type CandidateDetailsPersonalInfosProps = {
@@ -6,6 +8,8 @@ type CandidateDetailsPersonalInfosProps = {
 }
 
 export default function CandidateDetailsPersonalInfos({title, data}: CandidateDetailsPersonalInfosProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.container}>
@@ -16,17 +20,17 @@ export default function CandidateDetailsPersonalInfos({title, data}: CandidateDe
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     padding: 15,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: t.surface,
     width: '25%',
     height: 'auto',
     borderRadius: 8,
-    shadowColor: '#000000',
+    shadowColor: t.shadow,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -38,9 +42,10 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Nunito-Medium',
     fontSize: 11,
-    color: '#738396'
+    color: t.muted
   },
   data: {
-    fontFamily: 'RobotoSlab-ExtraBold'
+    fontFamily: 'RobotoSlab-ExtraBold',
+    color: t.text
   }
 })

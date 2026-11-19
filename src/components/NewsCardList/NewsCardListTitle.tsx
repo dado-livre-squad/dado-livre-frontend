@@ -1,7 +1,10 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function NewsCardListTitle() {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.container}>
@@ -16,7 +19,7 @@ export default function NewsCardListTitle() {
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     display: 'flex',
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'RobotoSlab-Bold',
-    color: mainColor,
+    color: t.title,
     fontSize: 16
   },
   titleCall: {
@@ -36,16 +39,16 @@ const styles = StyleSheet.create({
   titleLastNews: {
     fontSize: 12,
     fontFamily: 'Nunito-Medium',
-    color: '#987a96',
+    color: t.subtle,
     flexShrink: 1,
   },
   titleNewsCount: {
-    backgroundColor: '#d8e3e8',
+    backgroundColor: t.chip,
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontSize: 13,
     fontFamily: 'RobotoSlab-Bold',
-    color: mainColor,
+    color: t.chipText,
     borderRadius: 12,
   },
 })

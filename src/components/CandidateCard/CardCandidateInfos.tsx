@@ -1,4 +1,5 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 import CardTitle from "./CardTitle";
 
@@ -9,6 +10,8 @@ export type CandidateCardInfoProps = {
 }
 
 export default function CardCandidateInfos({name, role, number}: CandidateCardInfoProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <CardTitle>
@@ -20,7 +23,7 @@ export default function CardCandidateInfos({name, role, number}: CandidateCardIn
         </Text>
       </View>
       <View style={styles.numberContainer}>
-        <Text style={{ fontFamily: 'Nunito-Medium', color: '#9993a5' }}>
+        <Text style={styles.cardSub}>
           Número
         </Text>
         <Text style={styles.number}>
@@ -31,10 +34,10 @@ export default function CardCandidateInfos({name, role, number}: CandidateCardIn
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   cardSub: {
     fontFamily: 'Nunito-Medium',
-    color: '#9993a5'
+    color: t.subtle
   },
   numberContainer: {
     width: '100%',
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    backgroundColor: '#f0f5f8',
+    backgroundColor: t.surfaceAlt,
     paddingVertical: 10,
     marginTop: 10,
     borderRadius: 8,
@@ -52,6 +55,6 @@ const styles = StyleSheet.create({
   number: {
     fontSize: 16,
     fontFamily: 'RobotoSlab-Bold',
-    color: mainColor
+    color: t.title
   }
 })

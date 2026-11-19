@@ -1,4 +1,5 @@
-import { mainColor } from "@/constants/color";
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 
 type PartyProps = {
@@ -7,6 +8,8 @@ type PartyProps = {
 }
 
 export default function Party({party, state}: PartyProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <>
       <View style={styles.partyContainer}>
@@ -17,7 +20,7 @@ export default function Party({party, state}: PartyProps) {
   )
 }
 
-const styles =  StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
     partyContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -25,8 +28,8 @@ const styles =  StyleSheet.create({
     gap: 10
   },
   party: {
-    backgroundColor: mainColor,
-    color: 'white',
+    backgroundColor: t.primary,
+    color: t.onPrimary,
     fontFamily: 'Nunito-Bold',
     padding: 5,
     fontSize: 12,

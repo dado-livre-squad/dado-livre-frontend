@@ -1,3 +1,5 @@
+import type { Theme } from '@/constants/theme'
+import { useThemedStyles } from '@/contexts/ThemeContext'
 import { StyleSheet, View } from 'react-native'
 
 type ElectionResultContainerProps = {
@@ -5,6 +7,8 @@ type ElectionResultContainerProps = {
 }
 
 export default function ElectionResultContainer({ children }: ElectionResultContainerProps) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <View style={styles.container}>
       {children}
@@ -12,12 +16,12 @@ export default function ElectionResultContainer({ children }: ElectionResultCont
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   container: {
-    backgroundColor: '#fff', // TODO: token de constants/color
+    backgroundColor: t.surface,
     borderRadius: 16,
     overflow: 'hidden',
-    shadowColor: '#000',
+    shadowColor: t.shadow,
     shadowOpacity: 0.06,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },

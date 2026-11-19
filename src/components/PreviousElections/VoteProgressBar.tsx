@@ -1,9 +1,12 @@
-import { mainColor } from '@/constants/color';
+import type { Theme } from '@/constants/theme';
+import { useThemedStyles } from '@/contexts/ThemeContext';
 import { StyleSheet, Text, View } from 'react-native';
 
 type Props = { percentage: number; votes: number }
 
 export default function VoteProgressBar({ percentage, votes }: Props) {
+  const styles = useThemedStyles(createStyles)
+
   return (
     <View>
       <View
@@ -21,10 +24,10 @@ export default function VoteProgressBar({ percentage, votes }: Props) {
   )
 }
 
-const styles = StyleSheet.create({
-  track: { height: 8, borderRadius: 4, backgroundColor: '#E3E8EE', overflow: 'hidden' },
-  fill: { height: '100%', borderRadius: 4, backgroundColor: mainColor },
+const createStyles = (t: Theme) => StyleSheet.create({
+  track: { height: 8, borderRadius: 4, backgroundColor: t.progressTrack, overflow: 'hidden' },
+  fill: { height: '100%', borderRadius: 4, backgroundColor: t.trackOn },
   footer: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 },
-  votes: { fontSize: 12, color: '#6B7C8C' },
-  final: { fontSize: 11, fontWeight: '700', color: '#1B6A8A', letterSpacing: 0.5 },
+  votes: { fontSize: 12, color: t.muted },
+  final: { fontSize: 11, fontWeight: '700', color: t.accent, letterSpacing: 0.5 },
 })

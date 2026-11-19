@@ -1,3 +1,5 @@
+import type { Theme } from "@/constants/theme";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { candidatesList } from "@/mocks/candidates";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
@@ -8,6 +10,7 @@ interface CandidateCardListProps {
 }
 
 export default function CandidateCardList({ footer, header }: CandidateCardListProps) {
+  const styles = useThemedStyles(createStyles)
 
   return (
     <>
@@ -38,10 +41,10 @@ export default function CandidateCardList({ footer, header }: CandidateCardListP
   )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (t: Theme) => StyleSheet.create({
   tela: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: t.background,
   },
   listaContainer: {
     padding: 14,
