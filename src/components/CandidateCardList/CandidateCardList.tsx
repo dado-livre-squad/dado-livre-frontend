@@ -1,6 +1,9 @@
+import { ENV } from "@/constants/enviroment";
 import type { Theme } from "@/constants/theme";
 import { useThemedStyles } from "@/contexts/ThemeContext";
-import { useState } from "react";
+import { CandidatoListResponseDTO } from "@/dto/candidato/candidate-list-response.dto";
+import { candidateService } from "@/services/candidate-service";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";
 import ErrorScreen from "../ErrorScreen/ErrorScreen";
@@ -12,7 +15,7 @@ interface CandidateCardListProps {
 }
 
 export default function CandidateCardList({ footer, header }: CandidateCardListProps) {
-  const [candidatos, setCandidatos] = useState<CandidatoListDTO[]>([]);
+  const [candidatos, setCandidatos] = useState<CandidatoListResponseDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
