@@ -1,4 +1,4 @@
-import { CandidateModel } from "@/models/canidate-card.model";
+import { CandidateDetailsResponseDTO } from "@/dto/candidato/candidate-details-response.dto";
 import { StyleSheet, View } from "react-native";
 import CandidateName from "./CandidateName";
 import CandidateNumber from "./CandidateNumber";
@@ -6,7 +6,7 @@ import CandidateDetailsParty from "./CandidateParty";
 import Role from "./CandidateRole";
 
 type CandidateDetailsInfosProps = {
-  candidate: CandidateModel
+  candidate: CandidateDetailsResponseDTO
 }
 
 export default function CandidateDetailsInfos({candidate}: CandidateDetailsInfosProps) {
@@ -14,12 +14,12 @@ export default function CandidateDetailsInfos({candidate}: CandidateDetailsInfos
     <>
       <View style={styles.bottomCandidateInfosContainer}>
         <View>
-          <CandidateDetailsParty party={candidate.party} state={candidate.state}/>
-          <CandidateName name={candidate.candidateName}/>
-          <Role role={candidate.role}/>
+          <CandidateDetailsParty party={candidate.partido} state={candidate.estado}/>
+          <CandidateName name={candidate.nomeSocial}/>
+          <Role role={candidate.nomeCargo}/>
         </View>
 
-        <CandidateNumber number={candidate.number}/>
+        <CandidateNumber number={candidate.numeroPartido.toString()}/>
       </View>
     </>
   )

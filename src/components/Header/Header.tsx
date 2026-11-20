@@ -22,7 +22,7 @@ export default function Header() {
           </Link>
         </View>
         <Text onPress={() => router.push('/perfil')}>
-          <User color={theme.headerTint} size={28}/>
+          <User color={theme.headerTint} size={28} />
         </Text>
       </View>
     </>
@@ -42,7 +42,9 @@ const createStyles = (t: Theme) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
-    paddingTop: 20
+    paddingTop: 20,
+    borderBottomColor: t.tabBarBorder,
+    borderWidth: 0.5,
   },
   text: {
     fontSize: 28,

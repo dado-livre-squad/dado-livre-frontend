@@ -1,4 +1,4 @@
-import { DetailedCandidateModel } from "@/models/detailed-candidate.model"
+import { CandidateDetailsResponseDTO } from "@/dto/candidato/candidate-details-response.dto"
 import { ScrollView, StyleSheet, View } from "react-native"
 import CandidateDetailsAbout from "./CandidateDetailsAbout"
 import CandidateDetailsPersonalInfos from "./CandidateDetailsPersonalInfos"
@@ -6,7 +6,7 @@ import CandidateDetailsImage from "./Image/CandidateDetailsImage"
 import CandidateDetailsSocialMediaList from "./SocialMedia/CandidateDetailsSocialMediaList"
 
 type CandidateDetailsProps = {
-  candidate: DetailedCandidateModel
+  candidate: CandidateDetailsResponseDTO
 }
 
 export default function CandidateDetails({ candidate }: CandidateDetailsProps) {
@@ -16,14 +16,14 @@ export default function CandidateDetails({ candidate }: CandidateDetailsProps) {
       <View style={styles.container}>
 
         <View style={styles.personalInfoContainer}>
-          <CandidateDetailsPersonalInfos title="IDADE" data={`${candidate.age} anos`} />
-          <CandidateDetailsPersonalInfos title="ESTADO" data={candidate.state} />
-          <CandidateDetailsPersonalInfos title="CARGO" data={candidate.roleType} />
+          <CandidateDetailsPersonalInfos title="IDADE" data={`${candidate.idade} anos`} />
+          <CandidateDetailsPersonalInfos title="ESTADO" data={candidate.estado} />
+          <CandidateDetailsPersonalInfos title="CARGO" data={candidate.tipoCargo} />
         </View>
 
-        <CandidateDetailsAbout about={candidate.about} />
+        <CandidateDetailsAbout about={candidate.sobre} />
 
-        <CandidateDetailsSocialMediaList socialMedias={candidate.socialMedia}/>
+        <CandidateDetailsSocialMediaList socialMedias={candidate.redesSociais}/>
       </View>
     </ScrollView>
   )
@@ -31,11 +31,11 @@ export default function CandidateDetails({ candidate }: CandidateDetailsProps) {
 
 const styles = StyleSheet.create({
   scrollView: {
-    flex: 1, // Restringe a altura da ScrollView à tela
+    flex: 1, 
   },
   scrollContent: {
-    flexGrow: 1, // Permite que o conteúdo cresça
-    paddingBottom: 40, // Espaço extra no fim
+    flexGrow: 1, 
+    paddingBottom: 40, 
   },
   container: {
     display: 'flex',

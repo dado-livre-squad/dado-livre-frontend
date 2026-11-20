@@ -1,4 +1,6 @@
-import { DetailedCandidateModel } from "@/models/detailed-candidate.model";
+import { BASE_URL } from "@/constants/base-url";
+import { ENV } from "@/constants/enviroment";
+import { CandidateDetailsResponseDTO } from "@/dto/candidato/candidate-details-response.dto";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import CandidateDetailsImageIcon from "./CandidateDetailsImageIcon";
@@ -7,14 +9,17 @@ import CandidateDetailsInfos from "./Infos/CandidateDetailsInfos";
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 type CandidateDetailsImageProps = {
-  candidate: DetailedCandidateModel
+  candidate: CandidateDetailsResponseDTO
 }
 
 export default function CandidateDetailsImage({ candidate }: CandidateDetailsImageProps) {
   return (
     <View style={styles.imageContainer}>
-      <Image source={candidate.image} style={styles.image} resizeMode="cover" />
-      
+      <Image
+        source={ENV.mock ? candidate.image : { uri: `${BASE_URL}/api/candidato/${candidate.idCandidato}/foto` }}
+        style={styles.image} resizeMode="cover"
+      />
+
       <LinearGradient
         colors={['rgba(0, 0, 0, 0.65)', 'transparent']}
         style={styles.topGradientOverlay}
@@ -31,7 +36,7 @@ export default function CandidateDetailsImage({ candidate }: CandidateDetailsIma
         <CandidateDetailsImageIcon />
       </View>
 
-      <CandidateDetailsInfos candidate={candidate}/>
+      <CandidateDetailsInfos candidate={candidate} />
 
     </View>
   )
@@ -39,7 +44,7 @@ export default function CandidateDetailsImage({ candidate }: CandidateDetailsIma
 
 const styles = StyleSheet.create({
   imageContainer: {
-    height: SCREEN_HEIGHT * 0.35, 
+    height: SCREEN_HEIGHT * 0.35,
     width: '100%',
     position: 'relative'
   },
