@@ -1,10 +1,12 @@
 import { api } from "@/api/client";
+import { CandidateDetailsResponseDTO } from "@/dto/candidato/candidate-details-response.dto";
 import { CandidatoListResponseDTO } from "@/dto/candidato/candidate-list-response.dto";
 import { candidatesImages } from "@/mocks/cadidate-images";
 import { CandidateRepository } from "@/repositories/candidate-repository";
 import { ImageSourcePropType } from "react-native";
 
 export class CandidateApi implements CandidateRepository {
+
   candidatePhoto(candidateId: string): ImageSourcePropType {
     const candidate = candidatesImages.find((item) => item.idCandidato === candidateId)
 
@@ -17,5 +19,7 @@ export class CandidateApi implements CandidateRepository {
     return await api<CandidatoListResponseDTO[]>('/api/candidato')
   }
 
-
+  async candidateDetails(candidateId: string): Promise<CandidateDetailsResponseDTO> {
+    return await api<CandidateDetailsResponseDTO>(`/api/candidato/${candidateId}`)
+  }
 }
