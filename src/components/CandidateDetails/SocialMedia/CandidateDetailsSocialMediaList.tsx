@@ -1,12 +1,12 @@
 import type { Theme } from '@/constants/theme';
 import { useThemedStyles } from '@/contexts/ThemeContext';
-import { SocialMedia } from '@/models/social-media.model';
+import { RedeSocialResponseDTO } from '@/dto/redesocial/rede-social-response.dto';
 import { StyleSheet, Text, View } from 'react-native';
 import InfoContainer from '../../InfoContainer/CandidateDetailsContainer';
 import CandidateSocialMedia from './CandidateSocialMedia';
 
 type CandidateDetailsSocialMediaListProps = {
-  socialMedias?: SocialMedia[];
+  socialMedias?: RedeSocialResponseDTO[];
 }
 
 export default function CandidateDetailsSocialMediaList({ socialMedias = [] }: CandidateDetailsSocialMediaListProps) {
@@ -19,7 +19,7 @@ export default function CandidateDetailsSocialMediaList({ socialMedias = [] }: C
       <Text style={styles.title}>REDES SOCIAIS</Text>
       <View style={styles.listContainer}>
         {socialMedias.map((social) => (
-          <CandidateSocialMedia key={social.link} socialMedia={social} />
+          <CandidateSocialMedia key={social.endereco} socialMedia={social} />
         ))}
       </View>
     </InfoContainer>

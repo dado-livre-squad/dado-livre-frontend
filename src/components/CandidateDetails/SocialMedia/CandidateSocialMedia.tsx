@@ -1,10 +1,10 @@
 import type { Theme } from "@/constants/theme";
 import { useThemedStyles } from "@/contexts/ThemeContext";
-import { SocialMedia } from "@/models/social-media.model";
+import { RedeSocialResponseDTO } from "@/dto/redesocial/rede-social-response.dto";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 
 type CandidateSocialMediaProps = {
-  socialMedia: SocialMedia
+  socialMedia: RedeSocialResponseDTO
 }
 
 export default function CandidateSocialMedia({socialMedia}: CandidateSocialMediaProps) {
@@ -12,12 +12,12 @@ export default function CandidateSocialMedia({socialMedia}: CandidateSocialMedia
 
   return (
     <Pressable 
-      onPress={() => Linking.openURL(socialMedia.link)} 
+      onPress={() => Linking.openURL(socialMedia.endereco)} 
       style={{ width: '100%' }}
     >
       <View style={styles.socialMediaContainer}>
-        <Text style={styles.name}>{socialMedia.name}</Text>
-        <Text style={styles.link}>{socialMedia.username}</Text>
+        <Text style={styles.name}>{socialMedia.nome}</Text>
+        <Text style={styles.link}>{socialMedia.usuario}</Text>
       </View>
     </Pressable>
   )

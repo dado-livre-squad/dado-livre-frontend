@@ -46,6 +46,7 @@ const createStyles = (t: Theme) => StyleSheet.create({
   },
   data: {
     fontFamily: 'RobotoSlab-ExtraBold',
+    fontSize: 13,
     color: t.text
   }
 })

@@ -101,5 +101,5 @@ export const darkTheme: Theme = {
   tabInactive: "#5E7381",
   tabFocusedBg: "#1B3443",
 
-  shadow: "#000000",
+  shadow: "#7269dc",
 };
