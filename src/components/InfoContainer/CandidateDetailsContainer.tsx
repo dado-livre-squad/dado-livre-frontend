@@ -1,17 +1,18 @@
 import type { Theme } from '@/constants/theme'
 import { useThemedStyles } from '@/contexts/ThemeContext'
-import { StyleSheet, View } from 'react-native'
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
 type InfoContainerProps = {
-  children: React.ReactNode
+  children: React.ReactNode,
+  style?: StyleProp<ViewStyle>
 }
 
-export default function InfoContainer({ children }: InfoContainerProps) {
+export default function InfoContainer({ children, style }: InfoContainerProps) {
   const styles = useThemedStyles(createStyles)
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         {children}
       </View>
     </>
