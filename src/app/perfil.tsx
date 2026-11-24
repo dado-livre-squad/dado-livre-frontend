@@ -12,37 +12,20 @@ import { FONT_TITLE } from "@/constants/fonts";
 import { type Theme } from "@/constants/theme";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTheme, useThemedStyles } from "@/contexts/ThemeContext";
-import { userService } from "@/services/user/user-service";
 import { router, Stack } from "expo-router";
 import { Bell, CalendarDays, Moon } from "lucide-react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 
 export default function PerfilScreen() {
   const { theme, isDark, setDarkMode } = useTheme();
-  const { email } = useAuth();
+  const { email, nome } = useAuth();
 
   const styles = useThemedStyles(createStyles);
 
   const [notifications, setNotifications] = useState(true);
   const [reminders, setReminders] = useState(true);
-  const [name, setName] = useState('')
   const [isLoading, setLoading] = useState(false)
-
-  useEffect(() => {
-  if (!email) {
-    setName('');
-    return;
-  }
-
-  setLoading(true);
-
-  userService
-    .userFirstName({ email })
-    .then((r) => setName(r.nome))
-    .catch((e) => console.log(e))
-    .finally(() => setLoading(false));
-}, [email]);
 
 
   if (isLoading) return <SpinLoader />
@@ -75,7 +58,7 @@ export default function PerfilScreen() {
           ) : (
             <>
               <HeaderPerfil
-                nome={name}
+                nome={nome ? nome : ''}
               />
               <PerfilCard>
                 <StatRow label="Candidatos acompanhados" value={3} />
