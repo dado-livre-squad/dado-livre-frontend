@@ -2,7 +2,7 @@ import { ENV } from "@/constants/enviroment";
 import type { Theme } from "@/constants/theme";
 import { useThemedStyles } from "@/contexts/ThemeContext";
 import { CandidatoListResponseDTO } from "@/dto/candidato/candidate-list-response.dto";
-import { candidateService } from "@/services/candidate-service";
+import { candidateService } from "@/services/candidate/candidate-service";
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import CandidateCard from "../CandidateCard/CandidateCard";

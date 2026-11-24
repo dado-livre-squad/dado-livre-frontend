@@ -46,6 +46,10 @@ export const lightTheme = {
   ctaText: "#FFFFFF",
   ctaMuted: "#C9D6DF",
 
+  // Botões
+  buttonLight: "#344950",
+  buttonDark: "#062B3D",
+
   // Tab bar
   tabBar: "#FFFFFF",
   tabBarBorder: "#E6ECF0",
@@ -94,6 +98,9 @@ export const darkTheme: Theme = {
   cta: "#1C4A63",
   ctaText: "#FFFFFF",
   ctaMuted: "#B7CAD6",
+
+  buttonLight: "#7EC8E3",
+  buttonDark: "#0A1720",
 
   tabBar: "#04141D",
   tabBarBorder: "#1E3645",

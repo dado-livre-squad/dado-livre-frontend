@@ -4,7 +4,11 @@ import { User } from "lucide-react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { FONT_BODY, FONT_TITLE } from '../../constants/fonts';
 
-export function HeaderPerfil() {
+type HeaderPerfilProps = {
+  nome: string
+}
+
+export function HeaderPerfil({nome}: HeaderPerfilProps) {
   const { theme } = useTheme();
   const styles = useThemedStyles(createStyles);
 
@@ -13,7 +17,7 @@ export function HeaderPerfil() {
       <View style={styles.avatar}>
         <User size={26} color={theme.text} />
       </View>
-      <Text style={styles.greeting}>Olá, usuário</Text>
+      <Text style={styles.greeting}>Olá, {nome}</Text>
       <Text style={styles.subtitle}>
         Acompanhe candidatos e retome comparações que ajudam você a decidir.
       </Text>
