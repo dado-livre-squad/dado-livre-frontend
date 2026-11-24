@@ -11,7 +11,7 @@ export default function Header() {
   const pathname = usePathname()
 
 
-  if (pathname === '/perfil') return <></>
+  if (pathname === '/perfil' || pathname === '/cadastro' || pathname === '/login') return <></>
 
   return (
     <>

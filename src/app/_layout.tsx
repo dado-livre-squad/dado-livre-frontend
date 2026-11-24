@@ -1,4 +1,5 @@
 import Header from "@/components/Header/Header";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -43,7 +44,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
+      <AuthProvider>
+      
       <RootNavigator />
+      
+      </AuthProvider>
     </ThemeProvider>
   )
 }
@@ -59,6 +64,8 @@ function RootNavigator() {
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: theme.background },
+          animation: "fade",
+          animationDuration: 200
         }}
       >
         <Stack.Screen name="(tabs)" />

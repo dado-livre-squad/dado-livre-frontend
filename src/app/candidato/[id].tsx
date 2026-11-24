@@ -4,7 +4,7 @@ import SpinLoader from '@/components/SpinLoader/SpinLoader';
 import type { Theme } from '@/constants/theme';
 import { useThemedStyles } from '@/contexts/ThemeContext';
 import { CandidateDetailsResponseDTO } from '@/dto/candidato/candidate-details-response.dto';
-import { candidateService } from '@/services/candidate-service';
+import { candidateService } from '@/services/candidate/candidate-service';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
