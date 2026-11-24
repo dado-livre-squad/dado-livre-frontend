@@ -1,6 +1,5 @@
 import { type Theme } from "@/constants/theme";
-import { useTheme, useThemedStyles } from "@/contexts/ThemeContext";
-import { User } from "lucide-react-native";
+import { useThemedStyles } from "@/contexts/ThemeContext";
 import { StyleSheet, Text, View } from "react-native";
 import { FONT_BODY, FONT_TITLE } from '../../constants/fonts';
 
@@ -9,13 +8,14 @@ type HeaderPerfilProps = {
 }
 
 export function HeaderPerfil({nome}: HeaderPerfilProps) {
-  const { theme } = useTheme();
   const styles = useThemedStyles(createStyles);
 
   return (
     <View style={styles.hero}>
       <View style={styles.avatar}>
-        <User size={26} color={theme.text} />
+        <Text style={styles.user}>
+          {nome[0]}
+        </Text>
       </View>
       <Text style={styles.greeting}>Olá, {nome}</Text>
       <Text style={styles.subtitle}>
@@ -35,6 +35,10 @@ const createStyles = (t: Theme) =>
       backgroundColor: t.iconBox,
       alignItems: "center",
       justifyContent: "center",
+    },
+    user: {
+      color: t.text,
+      fontSize: 32      
     },
     greeting: {
       fontFamily: FONT_TITLE,
