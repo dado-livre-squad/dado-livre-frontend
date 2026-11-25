@@ -9,6 +9,7 @@ export const electionResults: ElectionResult[] = [
     winner: {
       name: 'Ricardo',
       lastName: 'Nunes',
+      socialName: 'Ricardo Nunes',
       party: 'MDB',
       percentage: 59.35,
       votes: 3393110,
@@ -20,8 +21,9 @@ export const electionResults: ElectionResult[] = [
     subtitle: 'Presidência da República · Brasil',
     round: 2,
     winner: {
-      name: 'Luiz',
-      lastName: 'Inácio Lula da Silva',
+      name: 'Luiz Inácio',
+      lastName: 'Lula da Silva',
+      socialName: 'Lula',
       party: 'PT',
       percentage: 50.9,
       votes: 60345999,
@@ -32,13 +34,41 @@ export const electionResults: ElectionResult[] = [
     title: 'Eleições Gerais 2022',
     subtitle: 'Governo do Estado · São Paulo',
     round: 2,
-    // TODO: o Figma corta este card; confirmar os valores reais no TSE
     winner: {
       name: 'Tarcísio',
       lastName: 'de Freitas',
+      socialName: 'Tarcísio de Freitas',
       party: 'REPUBLICANOS',
       percentage: 55.27,
       votes: 13479630,
+    },
+  },
+  {
+    id: 'sp-2026-governo',
+    title: 'Eleições Gerais 2026',
+    subtitle: 'Governo do Estado · São Paulo',
+    round: 1,
+    winner: {
+      name: 'Tarcísio',
+      lastName: 'de Freitas',
+      socialName: 'Tarcísio de Freitas',
+      party: 'REPUBLICANOS',
+      percentage: 62.65,
+      votes: 14491874 ,
+    },
+  },
+  {
+    id: 'br-2026-presidencia',
+    title: 'Eleições Gerais 2026',
+    subtitle: 'Presidência da República · Brasil',
+    round: 2,
+    winner: {
+      name: 'Luiz Inácio',
+      lastName: 'Lula da Silva',
+      socialName: 'Lula',
+      party: 'PT',
+      percentage: 51.79,
+      votes: 64256232 ,
     },
   },
 ]

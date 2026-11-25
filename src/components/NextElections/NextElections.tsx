@@ -17,7 +17,7 @@ export default function NextElections() {
           <NextElectionInfo
             date='04 Out 2026'
             day='Domingo'
-            electionsType='Eleições Municipais'
+            electionsType='Eleições Federais e Estaduais'
             turn='1º Turno'
           />
         </NextElectionContainer>
@@ -25,7 +25,7 @@ export default function NextElections() {
           <NextElectionInfo
             date='25 Out 2026'
             day='Domingo'
-            electionsType='Eleições Municipais'
+            electionsType='Eleições Federais e Estaduais'
             turn='2º Turno'
           />
         </NextElectionContainer>
