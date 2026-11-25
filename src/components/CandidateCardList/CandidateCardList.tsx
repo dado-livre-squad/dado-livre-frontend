@@ -49,7 +49,7 @@ export default function CandidateCardList({ footer, header }: CandidateCardListP
               party={item.partido.sigla}
               role={item.cargo.cargo}
               id={item.idCandidato}
-              image={ENV.appEnv === 'dev' ? candidateService.candidatePhoto(item.idCandidato) : undefined}
+              image={ENV.mock ? candidateService.candidatePhoto(item.idCandidato) : undefined}
             />
           </View>
         )}

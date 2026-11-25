@@ -41,8 +41,9 @@
   },
   "scripts": {
     "start": "expo start",
-    "start:dev": "dotenv -e .env.dev -- expo start",
-    "start:qa": "dotenv -e .env.qa -- expo start",
+    "start:dev": "dotenv -e .env.dev -- expo start -c",
+    "start:qa": "dotenv -e .env.qa -- expo start -c",
+    "start:prod": "dotenv -e .env.prod -- expo start -c",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",

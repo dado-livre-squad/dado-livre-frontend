@@ -14,7 +14,7 @@ export default function LogOutButton() {
             await signOut()
             Alert.alert('Você saiu da sua conta')
           }}
-          style={{ flex: 1, width: '30%', backgroundColor: 'transparent' }}
+          style={{ flex: 1, width: '30%' }}
         />
       </View>
     </>

@@ -17,7 +17,7 @@ import { Bell, CalendarDays, Moon } from "lucide-react-native";
 import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 
-export default function PerfilScreen() {
+export default function Perfil() {
   const { theme, isDark, setDarkMode } = useTheme();
   const { email, nome } = useAuth();
 
@@ -61,8 +61,8 @@ export default function PerfilScreen() {
                 nome={nome ? nome : ''}
               />
               <PerfilCard>
-                <StatRow label="Candidatos acompanhados" value={3} />
-                <StatRow label="Comparações salvas" value={3} last />
+                {/* <StatRow label="Candidatos acompanhados" value={3} /> */}
+                <StatRow label="Comparações salvas" value={1} last onPress={() => router.push('/(tabs)/comparar')}/>
               </PerfilCard></>
           )
         }
